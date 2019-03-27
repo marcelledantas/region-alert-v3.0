@@ -1,0 +1,576 @@
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T09:18:46-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <21103>
+Thread      : tev 7fc2b4058700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551961126.750313536/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T09:18:46-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <21103>
+Thread      : tev 7fc2b4058700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551961126.750404378/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T09:18:55-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <21103>
+Thread      : tev 7fc2b4058700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551961135.750218398/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T09:18:55-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <21103>
+Thread      : tev 7fc2b4058700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551961135.750450023/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T09:19:04-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <21103>
+Thread      : tev 7fc2b4058700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551961144.750264271/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T09:19:04-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <21103>
+Thread      : tev 7fc2b4058700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551961144.750499753/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T09:19:14-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <21103>
+Thread      : tev 7fc2b4058700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551961154.930744686/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T09:19:14-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <21103>
+Thread      : tev 7fc2b4058700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551961154.930972970/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T13:59:39-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551977979.842210405/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T13:59:39-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551977979.881194893/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T13:59:39-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551977979.957179990/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T13:59:48-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551977988.756379036/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T13:59:48-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551977988.881259807/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T13:59:48-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551977988.957258071/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:00:24-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978024.756606934/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:00:24-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978024.881514546/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:00:24-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978024.957509029/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:00:33-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978033.756678442/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:00:33-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978033.881591226/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:00:33-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978033.957592693/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:01:18-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978078.756990825/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:01:18-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978078.882104360/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:01:18-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978078.957922283/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:01:27-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978087.757049357/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:01:27-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978087.882158753/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:01:27-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978087.958002323/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:02:48-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978168.757640640/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:02:48-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978168.882639816/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:02:48-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978168.958670608/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:02:57-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978177.757708691/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:02:57-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978177.882717783/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:02:57-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978177.958749040/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:03:06-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978186.757777123/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:03:06-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978186.882790950/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:03:06-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978186.958821236/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:03:15-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978195.757833292/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:03:15-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978195.882861140/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:03:15-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978195.958898765/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:03:24-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978204.757905784/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:03:24-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978204.882930358/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:03:24-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978204.958980091/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:03:33-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978213.758106370/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:03:33-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978213.883026953/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:03:33-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978213.959030578/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:03:42-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978222.758157994/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:03:42-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978222.883058794/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:03:42-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978222.959104345/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:03:51-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978231.758234510/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:03:51-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978231.883131586/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:03:51-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978231.959170661/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:04:00-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978240.758310940/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:04:00-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978240.883209522/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:04:00-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978240.959248841/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:04:09-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978249.758377856/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:04:09-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978249.883277485/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:04:09-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978249.959300610/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:04:18-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978258.758454634/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:04:18-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978258.883359615/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:04:18-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978258.959376734/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:08:15-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978495.721725220/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T14:08:24-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <3907>
+Thread      : tev 7ffb26344700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551978504.721765234/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T19:51:02-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <22577>
+Thread      : tev 7fa714625700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551999062.682321880/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T19:51:02-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <22577>
+Thread      : tev 7fa714625700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551999062.840391195/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T19:51:02-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <22577>
+Thread      : tev 7fa714625700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551999062.889033251/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-07T19:51:11-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <22577>
+Thread      : tev 7fa714625700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1551999071.655794783/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-08T11:23:12-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <26488>
+Thread      : tev 7f15bd16e700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1552054992.690159072/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-08T11:23:21-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <26488>
+Thread      : tev 7f15bd16e700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1552055001.690110987/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-08T11:23:30-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <26488>
+Thread      : tev 7f15bd16e700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1552055010.690169945/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-08T11:23:40-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <26488>
+Thread      : tev 7f15bd16e700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1552055020.276571019/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-08T11:23:49-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <26488>
+Thread      : tev 7f15bd16e700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1552055029.276699963/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-09T16:39:41-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <26488>
+Thread      : tev 7f15bd16e700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1552160381.063905354/0
+========================================================================================
+Report      : ERROR
+Date        : 2019-03-09T16:39:49-0300
+Description : ddsi_udp_conn_write failed with error code 22
+Node        : meslin-notebook
+Process     : java <26488>
+Thread      : tev 7f15bd16e700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/ddsi_udp.c/147/0/1552160389.911150002/0
