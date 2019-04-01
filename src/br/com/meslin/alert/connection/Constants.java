@@ -3,9 +3,9 @@ package br.com.meslin.alert.connection;
 public class Constants {
 	// constants
 	/** ContextNet addresses */
-//	public static final String GATEWAY_IP = "127.0.0.1";
+	public static final String GATEWAY_IP = "127.0.0.1";
 //	public static final String GATEWAY_IP = "172.16.0.202";
-	public static final String GATEWAY_IP = "scp.inf.puc-rio.br";
+//	public static final String GATEWAY_IP = "scp.inf.puc-rio.br";
 	public static final int GATEWAY_PORT = 5500;
 	public static final String GATEWAY_IP_LIST[] = {
 		"scp.inf.puc-rio.br",	// group 1

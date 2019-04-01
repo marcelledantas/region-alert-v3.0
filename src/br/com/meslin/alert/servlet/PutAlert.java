@@ -5,7 +5,9 @@ import java.io.PrintWriter;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -14,7 +16,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import br.com.meslin.alert.contextnet.MyNodeConnection;
+import lac.cnclib.net.groups.Group;
+import br.com.meslin.alert.connection.HTTPException;
 import br.com.meslin.alert.interSCity.InterSCity;
 import br.com.meslin.alert.model.Alert;
 import br.com.meslin.alert.model.MyGroup;
@@ -34,9 +37,9 @@ public class PutAlert extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	ServletContext application = getServletContext();
     	/** ContextNet IP address */
-		String gatewayIP = application.getInitParameter("gatewayIP");
+		//String gatewayIP = application.getInitParameter("gatewayIP");
 		/** Contextnet UDP port */
-		int gatewayPort = Integer.parseInt(application.getInitParameter("gatewayPort"));
+		//int gatewayPort = Integer.parseInt(application.getInitParameter("gatewayPort"));
 		/** InterSCity ip address */
     	String interSCityIPAddress = application.getInitParameter("interSCityIPAddress");
 		InterSCity interSCity = new InterSCity(interSCityIPAddress);
@@ -91,10 +94,16 @@ public class PutAlert extends HttpServlet {
 			responseMessage = "Alert not created. Is InterSCity UP at " + interSCity.getIpAddress() + "?";
 		}
 		
-		// send alert to everybody connected 
-		MyNodeConnection connection = new MyNodeConnection(gatewayIP, gatewayPort);
-		connection.sendMessageToGroups(alert.getGroups(), alert.getText());
-		
+		List<String> areas = new ArrayList<String>();
+		for(Group group : alert.getGroups()) {
+			areas.add("" + group.getGroupID());
+		}
+		try {
+			interSCity.sendActuatorCommand("alertListener", areas.toArray(new String[areas.size()]));
+		} catch (HTTPException e) {
+			responseMessage += " but could not publish that there are new alerts";
+		}
+
 		PrintWriter out = response.getWriter();
 		response.setContentType("text/plain");
 		out.println(responseMessage);

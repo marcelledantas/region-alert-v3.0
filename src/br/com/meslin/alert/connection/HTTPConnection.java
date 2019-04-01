@@ -78,6 +78,7 @@ public class HTTPConnection {
 
 	/**
 	 * Constructor<br>
+	 * This constructor uses the <i>Constants.INTERSCITY_URL</i> as the InterSCity address<br>
 	 * Just constructs an HTTP Connection object (does nothing!)<br>
 	 */
 	public HTTPConnection() {
@@ -261,13 +262,13 @@ public class HTTPConnection {
 	/**
 	 * Send HTTP POST request
 	 * @param directory
-	 * @param jsonData
+	 * @param jsonString
 	 * @return POST answer
 	 * @throws MalformedURLException 
 	 * @throws IOException
 	 * @throws HTTPException 
 	 */
-	public String sendPost(String directory, String jsonData) throws MalformedURLException, IOException, HTTPException {
+	public String sendPost(String directory, String jsonString) throws MalformedURLException, IOException, HTTPException {
 		if(interSCityURI.contains("0.0.0.0")) return null;
 
 		final String url = interSCityURI + "/" + directory;
@@ -281,7 +282,7 @@ public class HTTPConnection {
 		// Send POST request
 		con.setDoOutput(true);
 		DataOutputStream wr = new DataOutputStream(con.getOutputStream());
-		wr.writeBytes(jsonData);
+		wr.writeBytes(jsonString);
 		wr.flush();
 		wr.close();
 
@@ -296,7 +297,7 @@ public class HTTPConnection {
 			}
 			in.close();
 			con.disconnect();
-			Debug.warning("URL = " + url + "\n" + jsonData);
+			Debug.warning("URL = " + url + "\n" + jsonString);
 			Debug.warning("Code " + responseCode + "\n" + answer.toString());
 			throw new HTTPException("Code: " + responseCode + ": " + answer.toString());
 		}

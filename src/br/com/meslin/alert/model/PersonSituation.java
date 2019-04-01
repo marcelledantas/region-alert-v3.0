@@ -4,6 +4,7 @@
 package br.com.meslin.alert.model;
 
 import java.util.HashSet;
+import java.util.List;
 
 /**
  * @author meslin
@@ -32,6 +33,24 @@ public class PersonSituation extends MobileObject {
 	 */
 	public HashSet<Integer> getDifGroups() {
 		return difGroups;
+	}
+	
+	/**
+	 * Adds a group to a difGroup<br>
+	 * A difGroup is a group set with only the new groups<br>
+	 * @param difGroups
+	 */
+	public void addToDifGroups(HashSet<Integer> difGroups) {
+		this.difGroups.addAll(difGroups);
+	}
+
+	/**
+	 * Adds a group to a difGroup<br>
+	 * A difGroup is a group set with only the new groups<br>
+	 * @param areas
+	 */
+	public void addToDifGroups(List<Integer> areas) {
+		this.difGroups.addAll(areas);
 	}
 
 	/**

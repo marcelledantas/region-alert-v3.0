@@ -5,6 +5,7 @@ import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.UUID;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -50,13 +51,15 @@ public class InterSCity {
 	public InterSCity(String interSCityIPAddress) {
 		this(new HTTPConnection(interSCityIPAddress));
 	}
-
+	
 	/**
 	 * Creates a new resource<br>
 	 * Register new resources<br>
-	 * /adaptor/resources<br>
+	 * DIR: /adaptor/resources<br>
 	 * Method: POST<br>
+	 * Includes a dummy capability for workaround for the one postion JSON array bug - capability not used<br>
 	 *<br>
+	 * interSCity data:<br>
 	 *  {<br>
 	 *  	"data": {<br> 
 	 *  		"description": "A city alert",<br> 
@@ -69,7 +72,7 @@ public class InterSCity {
 	 *  	}<br> 
 	 *  }<br>
 	 *<br>
-	 *  Answer:<br>
+	 * InterSCity answer:<br>
 	 * 	{<br>
   	 *		"data": {<br>
      *			"uuid": "45b7d363-86fd-4f81-8681-663140b318d4",<br>
@@ -92,66 +95,121 @@ public class InterSCity {
      *  		"id": 10<br>
      * 		}<br>
      * 	}<br>
+     * 
+	 * @param description the resource description
+	 * @param capabilities the resource capability list
+	 * @param lat the resource latitude
+	 * @param lon the resource longitude
+	 * @return uuid the new resource String
+	 * @throws Exception
+	 */
+	public String createNewResource(String description, String[] capabilities, double lat, double lon) throws Exception {
+		String uuid =null;
+		String response = null;
+
+		// create a new resource
+		JSONObject data = new JSONObject();
+		data.put("description", description);
+		for(String capability : capabilities) {
+			data.accumulate("capabilities", capability);
+		}
+		data.accumulate("capabilities", "uv");	// workaround for the one postion JSON array bug - capability not used
+		data.put("status", "active");
+		data.put("lat", lat);
+		data.put("lon", lon);
+
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("data", data);
+
+		try {
+			response = connection.sendPost("adaptor/resources", jsonObject.toString());
+		} catch (IOException | HTTPException e) {
+			Debug.warning("resource not created", e);
+			throw new Exception(e.getMessage());
+		}
+		jsonObject = new JSONObject(response);
+		uuid = jsonObject.getJSONObject("data").getString("uuid");
+			
+		if(uuid == null) {
+			Debug.warning("Null UUID for " + data.toString());
+		}
+		return uuid;
+	}
+	
+	/**
+	 * Creates a new resource<br>
+	 * Register new resources<br>
+	 * DIR: /adaptor/resources<br>
+	 * Method: POST<br>
+	 * Includes a dummy capability for workaround for the one postion JSON array bug - capability not used<br>
+	 *<br>
+	 * interSCity data:<br>
+	 *  {<br>
+	 *  	"data": {<br> 
+	 *  		"description": "A city alert",<br> 
+	 *  		"capabilities": [<br>
+	 *  			"city_alerting"
+	 *  		],<br> 
+	 *  		"status": "active",<br> 
+	 *  		"lat": -23.559616,<br> 
+	 *  		"lon": -46.731386<br> 
+	 *  	}<br> 
+	 *  }<br>
+	 *<br>
+	 * InterSCity answer:<br>
+	 * 	{<br>
+  	 *		"data": {<br>
+     *			"uuid": "45b7d363-86fd-4f81-8681-663140b318d4",<br>
+     *			"description": "A city alert",<br>
+     *			"capabilities": [<br>
+	 *  			"ordem",<br>
+	 *  			"linha",<br> 
+	 *  			"velocidade" <br>
+     *			],<br>
+     *  		"status": "active",<br>
+     *  		"lat": -23.559616,<br>
+     *  		"lon": -46.731386,<br>
+     *  		"country": "Brazil",<br>
+     *  		"state": "São Paulo",<br>
+     *  		"city": "São Paulo",<br>
+     *  		"neighborhood": "Butantã",<br>
+     *  		"postal_code": null,<br>
+     *  		"created_at": "2017-12-27T13:25:07.176Z",<br>
+     *  		"updated_at": "2017-12-27T13:25:07.176Z",<br>
+     *  		"id": 10<br>
+     * 		}<br>
+     * 	}<br>
+     * 
+	 * @param description the resource description
+	 * @param capability the resource capability
+	 * @param lat the resource latitude
+	 * @param lon the resource longitude
+	 * @return uuid the new resource String
+	 * @throws Exception
+	 */
+	public String createNewResource(String description, String capability, double lat, double lon) throws Exception {
+		return createNewResource(description, new String[]{capability}, lat, lon);
+	}
+
+	/**
+	 * Creates a new resource<br>
+	 * Register new resources<br>
+	 * /adaptor/resources<br>
+	 * Method: POST<br>
      *<br>
 	 * @param interSCityData
 	 * @param group
 	 * @return UUID String
 	 * @throws Exception 
 	 */
-	private String createNewResource(InterSCityData interSCityData, MyGroup group) throws Exception {
-		String uuid =null;
-		String response = null;
-
+	public String createNewResource(InterSCityData interSCityData, MyGroup group) throws Exception {
 		if(interSCityData instanceof Alert) {
 			// create a new Alert
-			JSONObject data = new JSONObject();
-			data.put("description", "An alert");
-			data.accumulate("capabilities", "city_alerting");
-			data.accumulate("capabilities", "uv");	// workaround for the one postion JSON array bug - capability not used
-			data.put("status", "active");
-			data.put("lat", group.getLatitude());
-			data.put("lon", group.getLongitude());
-
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("data", data);
-
-			try {
-				response = connection.sendPost("adaptor/resources", jsonObject.toString());
-			} catch (IOException | HTTPException e) {
-				Debug.warning("resource not created", e);
-				throw new Exception(e.getMessage());
-			}
-			jsonObject = new JSONObject(response);
-			uuid = jsonObject.getJSONObject("data").getString("uuid");
-			
-			if(uuid == null) {
-				Debug.warning("Null UUID for " + data.toString());
-			}
-			return uuid;
+			return createNewResource("An alert", "city_alerting", group.getLatitude(), group.getLongitude());
 		}
 		else if(interSCityData instanceof Person) {
 			// create a new Person
-			JSONObject data = new JSONObject();
-			data.put("description", "A person");
-			data.accumulate("capabilities", "person");
-			data.accumulate("capabilities", "uv");	// workaround for the one postion JSON array bug - capability not used
-			data.put("status", "active");
-
-			JSONObject jsonObject = new JSONObject();
-			jsonObject.put("data", data);
-
-			try {
-				response = connection.sendPost("adaptor/resources", jsonObject.toString());
-			} catch (IOException | HTTPException e) {
-				Debug.warning("resource not created");
-			}
-			jsonObject = new JSONObject(response);
-			uuid = jsonObject.getJSONObject("data").getString("uuid");
-			
-			if(uuid == null) {
-				Debug.warning("Null UUID for " + data.toString());
-			}
-			return uuid;
+			return createNewResource("A person", "person", ((Person)interSCityData).getLatitude(), ((Person)interSCityData).getLongitude());
 		}
 		else {
 			Debug.warning("unknown resource type to create");
@@ -288,6 +346,7 @@ public class InterSCity {
 		else {
 			Debug.info("Capability alert found!");
 		}
+
 		// check for person capability
 		found = false;
 		for(int i=0; i<capabilities.length(); i++) {
@@ -303,6 +362,23 @@ public class InterSCity {
 		}
 		else {
 			Debug.info("Capability person found!");
+		}
+
+		// check for alertListener capability
+		found = false;
+		for(int i=0; i<capabilities.length(); i++) {
+			if(((String)((JSONObject)capabilities.get(i)).get("name")).equals("alertListener")) {
+				found = true;
+			}
+		}
+		if(!found) {
+			// alertListener capability not found, need to be created now!
+			Debug.info("Capability alertListener not found, creating one");
+			String data = "{ \"name\": \"alertListener\", \"description\": \"alertListener\", \"capability_type\": \"actuator\" }";
+			response = connection.sendPost("catalog/capabilities", data);
+		}
+		else {
+			Debug.info("Capability alertListener found!");
 		}
 	}
 
@@ -440,5 +516,84 @@ public class InterSCity {
 			return null;
 		}
 		return response;
+	}
+
+	/**
+	 * Subscribe to receive actuation commands<br>
+	 * @param capabilities
+	 * @param url
+	 * @throws HTTPException 
+	 * @throws IOException 
+	 * @throws MalformedURLException 
+	 */
+	public void subscribe(String uuid, String[] capabilities, String url) throws MalformedURLException, IOException, HTTPException {
+		JSONObject subscription = new JSONObject();
+		subscription.put("uuid", uuid);
+		for(String capability : capabilities) {
+			subscription.accumulate("capabilities", capability);			
+		}
+		// add a dummy capability to correct JSONObject bug when creating a single element array
+		subscription.accumulate("capabilities", "uv");
+		subscription.put("url", url);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("subscription", subscription);
+		
+		// subscribe
+		HTTPConnection connection = new HTTPConnection();
+		connection.sendPost("adaptor/subscriptions", jsonObject.toString());
+	}
+	public void sendActuatorCommand(String capability, String[] commands) throws MalformedURLException, IOException, HTTPException {
+		/*
+		 * Publish the information that there are new alerts.
+		 * The command has the following JSON format:
+		 * {
+		 *   "data": [
+		 *     {
+		 *       "uuid": "b0ae6f76-521d-4199-9595-f52c99361052",
+		 *       "capabilities": {
+		 *         "alertListener": <command>,
+		 *         "illuminate": null
+		 *       }
+		 *     }
+		 *   ]
+		 * }
+		 */
+		// capabilities
+		JSONObject capabilities = new JSONObject();
+		for(String command : commands) {
+			capabilities.accumulate(capability, command);			
+		}
+		// command
+		JSONObject command = new JSONObject();
+		command.put("uuid", UUID.randomUUID().toString());
+		command.put("capabilities", capabilities);
+		// data
+		JSONArray data = new JSONArray();
+		data.put(0, command);
+		JSONObject jsonObject = new JSONObject();
+		jsonObject.put("data", data);
+		
+		Debug.warning("Publishing command:\n" + jsonObject.toString(2));
+		
+		HTTPConnection connection = new HTTPConnection();
+		connection.sendPost("actuator/commands", jsonObject.toString());
+	}
+	
+	/**
+	 * Discover alert listeners near lat and lon<br>
+	 * @param lat
+	 * @param lon
+	 * @return UUID list
+	 * @throws Exception 
+	 */
+	public String[] alertListenerDiscover(double lat, double lon) throws Exception {
+		String response = (new HTTPConnection()).sendGet("discovery/resources", "capability=alertListener&lat=" + lat + "&lon=" + lon);
+		JSONArray jsonResources = (new JSONObject(response)).getJSONArray("resources");
+		List<String> uuids = new ArrayList<String>();
+		
+		for(int i=0; i<jsonResources.length(); i++) {
+			uuids.add(jsonResources.getJSONObject(i).getString("uuid"));
+		}
+		return uuids.toArray(new String[0]);
 	}
 }

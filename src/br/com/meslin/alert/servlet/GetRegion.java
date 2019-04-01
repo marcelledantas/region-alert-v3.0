@@ -24,7 +24,7 @@ import br.com.meslin.alert.util.StaticLibrary;
 		description = "Read the file with region numbers and filenames and returns a JSON structure",
 		urlPatterns = { "/GetRegion" }, 
 		initParams = {
-				@WebInitParam(name = "workDir", value = "/media/meslin/643CA9553CA92352/Users/meslin/Google Drive/workspace-desktop-ubuntu/AlertCity/", description = "Working directory"),
+				@WebInitParam(name = "workDir", value = "/media/meslin/643CA9553CA92352/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/", description = "Working directory"),
 				@WebInitParam(name = "groupDescriptionFilename", value = "Bairros/RioDeJaneiro.lista", description = "Group description filename")
 		})
 public class GetRegion extends HttpServlet {
