@@ -29,14 +29,15 @@ import br.com.meslin.alert.util.StaticLibrary;
  */
 public class SubscriberListener extends Thread {
 	private ServerSocket server; 
-
+	private InterSCity interSCity;
 	/**
 	 * Constructor<br>
 	 * @throws Exception when could not create the listener
 	 */
-	public SubscriberListener() throws Exception {
+	public SubscriberListener(String interSCityIPAddress) throws Exception {
 		String ip = null;
 		String uuid;
+		String[] uuids;
 		
 		// get the local IP address to subscribe to receive actuation commands (information about new messages)
 		try (final DatagramSocket socket = new DatagramSocket()) {
@@ -48,11 +49,16 @@ public class SubscriberListener extends Thread {
 		
 		server = new ServerSocket(0);
 		// TODO testar se conseguiu subscrever (subscribe)
-		InterSCity interSCity = new InterSCity();
-		String[] uuids = interSCity.alertListenerDiscover(-23.559616, -46.731386);
-		if(uuids == null) {
+		this.interSCity = new InterSCity(interSCityIPAddress);
+		uuids = interSCity.alertListenerDiscover(-23.559616, -46.731386);
+		if(uuids == null || uuids.length == 0) {
 			Debug.info("creating a new alert listener");
 			uuid = interSCity.createNewResource("A city alert listener", "alertListener", -23.559616, -46.731386);
+			// put the new UUID into the UUIDs array
+			// the problem is: the UUIDs is an array and as an array, elements cannot be added, so I create an new array based on a List
+			List<String> listUUIDS = new ArrayList<String>();
+			listUUIDS.add(uuid);
+			uuids = listUUIDS.toArray(uuids);
 		}
 		uuid = uuids[0];
 		interSCity.subscribe(uuid, new String[]{"alertListener"}, "http://" + ip + ":" + server.getLocalPort());
@@ -66,12 +72,12 @@ public class SubscriberListener extends Thread {
 	 */
 	@Override
 	public void run() {
-		InterSCity interSCity = new InterSCity();
+//		InterSCity interSCity = new InterSCity();
 		while (true) {
 			try {
 				// wait for a new alert
 				Socket client = server.accept();
-				Debug.warning("Publisher connected at " + client.getInetAddress().getHostAddress());
+				Debug.info("Publisher connected at " + client.getInetAddress().getHostAddress());
 				/*
 				 * read the published text
 				 * data should be a JSON text like this:
@@ -119,7 +125,7 @@ public class SubscriberListener extends Thread {
 	 */
 	@Override
 	public void finalize() throws IOException {
-		Debug.warning("Closing subscriber thread");
+		Debug.info("Closing subscriber thread");
 		server.close();
 	}
 
@@ -129,15 +135,6 @@ public class SubscriberListener extends Thread {
 	 */
 	public SubscriberListener(Runnable target) {
 		super(target);
-		// Auto-generated constructor stub
-	}
-
-	/**
-	 * Constructor<br>
-	 * @param name
-	 */
-	public SubscriberListener(String name) {
-		super(name);
 		// Auto-generated constructor stub
 	}
 

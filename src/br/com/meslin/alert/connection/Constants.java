@@ -17,7 +17,8 @@ public class Constants {
 	};
 
 	/** InterSCity addresses */
-	public static final String INTERSCITY_URL = "http://alert:8000";
+//	public static final String INTERSCITY_URL = "http://alert:8000";
+	public static final String INTERSCITY_URL = "http://127.0.0.1:8000";
 //	public static final String INTERSCITY_URL = "http://172.16.0.201:8000";
 //	public static final String INTERSCITY_URL = "http://scp.inf.puc-rio.br:8000";
 }

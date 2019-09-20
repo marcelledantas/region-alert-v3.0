@@ -43,8 +43,10 @@ public class MyContextNetCore {
 	 */
 	/** InterSCity IP address */
 	private static String interSCityIPAddress;
+	/** group description region file */
+	private static String workdir;
 	/** group description file name */
-	private static String filename; 
+	private static String filename;
 
 	/** An interface to InterSCity */
 	private static InterSCity interSCity;
@@ -89,11 +91,15 @@ public class MyContextNetCore {
 		options.addOption(option);
 
 		option = new Option("i", "InterSCity", true, "InterSCity IP address");
-		option.setRequired(false);
+		option.setRequired(true);
 		options.addOption(option);
 		
 		option = new Option("p", "port", true, "ContextNet Gateway TCP port number");
 		option.setRequired(false);
+		options.addOption(option);
+
+		option = new Option("w", "workdir", true, "Directory where the group description filename is");
+		option.setRequired(true);
 		options.addOption(option);
 
 		CommandLineParser parser = new DefaultParser();
@@ -115,6 +121,7 @@ public class MyContextNetCore {
 			StaticLibrary.contextNetIPAddress = Constants.GATEWAY_IP;
 		}
 		// group description filename
+		workdir = cmd.getOptionValue("workdir");
 		filename = cmd.getOptionValue("groupfilename");
 		// ContextNet TCP port number
 		try {
@@ -123,7 +130,7 @@ public class MyContextNetCore {
 			StaticLibrary.contextNetPortNumber = Constants.GATEWAY_PORT;
 		}
 		// InterSCity IP address
-		interSCityIPAddress = cmd.getOptionValue("InterSCity");	// null if not available
+		interSCityIPAddress = cmd.getOptionValue("InterSCity");	// null if not available, but, by now, it is mandatory, so never NULL
 		
 		StaticLibrary.forceHeadless = cmd.hasOption("force-headless");
 
@@ -155,13 +162,13 @@ public class MyContextNetCore {
 		/*
 		 * Creating GroupSelector
 		 */
-		GroupSelector groupSelector = new MyGroupSelector(filename);
+		GroupSelector groupSelector = new MyGroupSelector(workdir, filename);
 		new GroupDefiner(groupSelector);
 		
 		/*
 		 * Create Processing Node
 		 */
-		new MyProcessingNode(mobileObjectQueue);
+		new MyProcessingNode(interSCityIPAddress, mobileObjectQueue);
 
 		/*
 		 * Create a thread to send bus data to the InterSCity

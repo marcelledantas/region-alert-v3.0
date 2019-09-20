@@ -133,42 +133,48 @@ public class StaticLibrary {
 	 * Reads the filenames file<br>
 	 * This file has a filename per line<br>
 	 * Each filename represents a region (group) on the map<br>
+	 * @param workdir work directory ending with a slash
 	 * @param filename name of the file with filenames
 	 * @return list of regions (without coordinates)
 	 */
-	public static List<Region> readFilenamesFile(String filename) {
+	public static List<Region> readFilenamesFile(String workdir, String filename) {
 		// read the file composed by a filename per line
 		BufferedReader br = null;
 		List<Region> regions = new ArrayList<Region>();
 		
 		try {
-			br = new BufferedReader(new FileReader(filename));
-			String line;
-			while((line = br.readLine()) != null)
-			{
-				String[] data = line.split(",");
-				Region region = new Region();
-				region.setNumber(Integer.parseInt(data[0]));
-				region.setFilename(data[1].trim());
-				regions.add(region);
-			}
-		}
-		catch (IOException e) {
-			Debug.warning("Error while reading " + filename, e);
-			Debug.warning("Available files are:");
-			File directory = new  File(".");
-			File[] files = directory.listFiles();
-			for(File file: files) {
-				Debug.warning(file.getAbsolutePath());
-			}
-		}
-		finally {
-			if(br != null) {
-				try {
-					br.close();
+			br = new BufferedReader(new FileReader(workdir + filename));
+		} catch (IOException e0) {
+			try {
+				workdir = "/media/meslin/643CA9553CA92352/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/";
+				br = new BufferedReader(new FileReader(workdir + filename));
+				String line;
+				while((line = br.readLine()) != null)
+				{
+					String[] data = line.split(",");
+					Region region = new Region();
+					region.setNumber(Integer.parseInt(data[0]));
+					region.setFilename(data[1].trim());
+					regions.add(region);
 				}
-				catch (IOException e) {
-					Debug.warning("Could not close " + filename, e);
+			}
+			catch (IOException e) {
+				Debug.warning("Error while reading " + workdir + filename, e);
+				Debug.warning("Available files are:");
+				File directory = new  File(".");
+				File[] files = directory.listFiles();
+				for(File file: files) {
+					Debug.warning(file.getAbsolutePath());
+				}
+			}
+			finally {
+				if(br != null) {
+					try {
+						br.close();
+					}
+					catch (IOException e) {
+						Debug.warning("Could not close " + workdir + filename, e);
+					}
 				}
 			}
 		}
@@ -182,38 +188,43 @@ public class StaticLibrary {
 	 * @param filename	name of the file describing a region
 	 * @return a region
 	 */
-	public static List<Coordinate> readRegion(String filename) {
+	public static List<Coordinate> readRegion(String workdir, String filename) {
 		// reads a region. A region is described by an X, Y coordinate per line
 		List<Coordinate> points = new ArrayList<Coordinate>();
 		BufferedReader br = null;
 		try {
-			br = new BufferedReader(new FileReader(filename));
-			String line;
-			while((line = br.readLine()) != null) {
-				Coordinate coordinate = new Coordinate(
-						Double.parseDouble(line.substring(0, line.indexOf(" ")).trim()),
-						Double.parseDouble(line.substring(line.indexOf(" ")).trim())
-						);
-				points.add(coordinate);
-			}
-		}
-		catch (IOException e) {
-			Debug.warning("Could not read region file " + filename, e);
-			Debug.warning("Available files are:");
-			File directory = new  File(".");
-			File[] files = directory.listFiles();
-			for(File file: files) {
-				Debug.warning(file.getAbsolutePath());
-			}
-		}
-		finally {
-			if(br != null) {
-				try {
-					br.close();
+			br = new BufferedReader(new FileReader(workdir + filename));
+		} catch (IOException e0) {
+			try {
+				workdir = "/media/meslin/643CA9553CA92352/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/";
+				br = new BufferedReader(new FileReader(workdir + filename));
+				String line;
+				while((line = br.readLine()) != null) {
+					Coordinate coordinate = new Coordinate(
+							Double.parseDouble(line.substring(0, line.indexOf(" ")).trim()),
+							Double.parseDouble(line.substring(line.indexOf(" ")).trim())
+							);
+					points.add(coordinate);
 				}
-				catch (IOException e) {
-					System.err.println("Date = " + new Date());
-					e.printStackTrace();
+			}
+			catch (IOException e) {
+				Debug.warning("Could not read region file " + workdir + filename, e);
+				Debug.warning("Available files are:");
+				File directory = new  File(".");
+				File[] files = directory.listFiles();
+				for(File file: files) {
+					Debug.warning(file.getAbsolutePath());
+				}
+			}
+			finally {
+				if(br != null) {
+					try {
+						br.close();
+					}
+					catch (IOException e) {
+						System.err.println("Date = " + new Date());
+						e.printStackTrace();
+					}
 				}
 			}
 		}

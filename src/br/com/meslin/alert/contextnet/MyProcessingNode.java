@@ -34,7 +34,7 @@ public class MyProcessingNode implements UDIDataReaderListener<ApplicationObject
 	 * Constructor
 	 * @param interSCityDataQueue
 	 */
-	public MyProcessingNode(ConcurrentLinkedQueue<InterSCityData> interSCityDataQueue) {
+	public MyProcessingNode(String interSCityIPAddress, ConcurrentLinkedQueue<InterSCityData> interSCityDataQueue) {
 		this();
 
 		this.processingNode = UniversalDDSLayerFactory.getInstance();
@@ -50,13 +50,13 @@ public class MyProcessingNode implements UDIDataReaderListener<ApplicationObject
 		this.processingNode.createDataWriter(toMobileNodeTopic);
 		
 		// a thread to receive data from ContextNet
-		Thread receiveData = new ReceiveData();
+		Thread receiveData = new ReceiveData(interSCityIPAddress);
 		receiveData.start();
 		
 		// a thread to act as an actuator and receive mesagens whenever a new alert is created
 		Thread subscriberListener;
 		try {
-			subscriberListener = new SubscriberListener();
+			subscriberListener = new SubscriberListener(interSCityIPAddress);
 			subscriberListener.start();
 		} catch (Exception e) {
 			Debug.error("Could not subscribe to receive news about alerts", e);

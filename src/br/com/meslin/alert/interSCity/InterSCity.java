@@ -36,13 +36,6 @@ public class InterSCity {
 
 //		ordemUUIDMap = new HashMap<String, String>();
 	}
-	/**
-	 * Constructor<br>
-	 * Creates an HTTPConnection HTTP connction object with default parameters<br>
-	 */
-	public InterSCity() {
-		this(new HTTPConnection());
-	}
 	
 	/**
 	 * Constructor<br>
@@ -124,7 +117,7 @@ public class InterSCity {
 		try {
 			response = connection.sendPost("adaptor/resources", jsonObject.toString());
 		} catch (IOException | HTTPException e) {
-			Debug.warning("resource not created", e);
+			Debug.error("resource not created", e);
 			throw new Exception(e.getMessage());
 		}
 		jsonObject = new JSONObject(response);
@@ -278,7 +271,7 @@ public class InterSCity {
 			JSONObject jsonObject = new JSONObject();
 			jsonObject.put("data", data);
 			String jsonString = jsonObject.toString(2).replace("[[", "[").replace("]]", "]");
-			connection = new HTTPConnection();
+//			connection = new HTTPConnection();
 			try {
 				response = connection.sendPost("adaptor/resources/" + uuid + "/data", jsonString);
 			} catch (IOException | HTTPException e) {
@@ -321,7 +314,7 @@ public class InterSCity {
 		try {
 			response = connection.sendGet("catalog/capabilities", "");
 		} catch (Exception e) {
-			Debug.warning("Error while checking InterSCity connection (shutted down?)", e);
+			Debug.warning("Error while checking InterSCity connection (is it up?)", e);
 			return;
 		}
 		
@@ -539,7 +532,7 @@ public class InterSCity {
 		jsonObject.put("subscription", subscription);
 		
 		// subscribe
-		HTTPConnection connection = new HTTPConnection();
+//		HTTPConnection connection = new HTTPConnection();
 		connection.sendPost("adaptor/subscriptions", jsonObject.toString());
 	}
 	public void sendActuatorCommand(String capability, String[] commands) throws MalformedURLException, IOException, HTTPException {
@@ -575,7 +568,7 @@ public class InterSCity {
 		
 		Debug.warning("Publishing command:\n" + jsonObject.toString(2));
 		
-		HTTPConnection connection = new HTTPConnection();
+//		HTTPConnection connection = new HTTPConnection();
 		connection.sendPost("actuator/commands", jsonObject.toString());
 	}
 	
@@ -587,7 +580,9 @@ public class InterSCity {
 	 * @throws Exception 
 	 */
 	public String[] alertListenerDiscover(double lat, double lon) throws Exception {
-		String response = (new HTTPConnection()).sendGet("discovery/resources", "capability=alertListener&lat=" + lat + "&lon=" + lon);
+		String response;
+		response = connection.sendGet("discovery/resources", "capability=alertListener&lat=" + lat + "&lon=" + lon);
+//		response = connection.sendGet("discovery/resources", "capability=alertListener");
 		JSONArray jsonResources = (new JSONObject(response)).getJSONArray("resources");
 		List<String> uuids = new ArrayList<String>();
 		

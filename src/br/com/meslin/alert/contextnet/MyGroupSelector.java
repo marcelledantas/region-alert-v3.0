@@ -38,15 +38,15 @@ public class MyGroupSelector implements GroupSelector {
 	 * Creates a Group Definer based on ContextNet IP address, ContextNet port number and region description filename 
 	 * @param filename
 	 */
-	public MyGroupSelector(String filename) {
+	public MyGroupSelector(String workdir, String filename) {
 		this.personGroup = new HashMap<String, HashSet<Integer>>();
-		this.regionList = StaticLibrary.readFilenamesFile(filename);
+		this.regionList = StaticLibrary.readFilenamesFile(workdir, filename);
 		
 		/*
 		 * reads each region file
 		 */
 		for(Region region : regionList) {
-			region.setPoints(StaticLibrary.readRegion(region.getFilename()));
+			region.setPoints(StaticLibrary.readRegion(workdir, region.getFilename()));
 		}
 
 		/*

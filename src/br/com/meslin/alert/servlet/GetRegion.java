@@ -24,7 +24,8 @@ import br.com.meslin.alert.util.StaticLibrary;
 		description = "Read the file with region numbers and filenames and returns a JSON structure",
 		urlPatterns = { "/GetRegion" }, 
 		initParams = {
-				@WebInitParam(name = "workDir", value = "/media/meslin/643CA9553CA92352/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/", description = "Working directory"),
+//				@WebInitParam(name = "workDir", value = "/media/meslin/643CA9553CA92352/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/", description = "Working directory"),
+				@WebInitParam(name = "workDir", value = "/home/alert/", description = "Working directory"),
 				@WebInitParam(name = "groupDescriptionFilename", value = "Bairros/RioDeJaneiro.lista", description = "Group description filename")
 		})
 public class GetRegion extends HttpServlet {
@@ -35,13 +36,14 @@ public class GetRegion extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		PrintWriter out = response.getWriter();
 		String workdir = getServletConfig().getInitParameter("workDir");
 		String filename = getServletConfig().getInitParameter("groupDescriptionFilename");
-		this.regionList = StaticLibrary.readFilenamesFile(workdir + filename);
+		this.regionList = StaticLibrary.readFilenamesFile(workdir, filename);
 		JSONObject jsonObject = new JSONObject();
 		for(Region region : regionList) {
 			// computes the center of the region because InterSCity needs a coordinate to create a resource
-			region.setPoints(StaticLibrary.readRegion(workdir + region.getFilename()));
+			region.setPoints(StaticLibrary.readRegion(workdir, region.getFilename()));
 			double lat =0, lon =0;
 			for(Coordinate point : region.getPoints()) {
 				lat += point.getLat();
@@ -58,7 +60,6 @@ public class GetRegion extends HttpServlet {
 			jsonObject.accumulate("regions", jsonRegion);
 		}
 		
-		PrintWriter out = response.getWriter();
 		response.setContentType("text/plain");
 		out.println(jsonObject.toString(4));
 	}

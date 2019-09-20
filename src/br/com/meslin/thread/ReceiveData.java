@@ -15,10 +15,12 @@ import br.com.meslin.alert.util.StaticLibrary;
 
 public class ReceiveData extends Thread {
 	private MyNodeConnection nodeConnection;
+	private InterSCity interSCity;
 
-	public ReceiveData() {
+	public ReceiveData(String interSCityIPAddress) {
 		// create a new connection to send message to mobile-hub
 		nodeConnection = new MyNodeConnection(StaticLibrary.contextNetIPAddress, StaticLibrary.contextNetPortNumber);
+		this.interSCity = new InterSCity(interSCityIPAddress);
 	}
 
 	/**
@@ -28,7 +30,6 @@ public class ReceiveData extends Thread {
 	 */
 	@Override
 	public void run() {
-		InterSCity interSCity = new InterSCity();
 		Object data;
 		List<Alert> alerts = new ArrayList<Alert>();
 		

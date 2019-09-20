@@ -74,16 +74,8 @@ import br.com.meslin.alert.util.Debug;
 
 public class HTTPConnection {
 	private static final String USER_AGENT = "Mozilla/5.0";
-	private String interSCityURI;
+	private String endPointURI;
 
-	/**
-	 * Constructor<br>
-	 * This constructor uses the <i>Constants.INTERSCITY_URL</i> as the InterSCity address<br>
-	 * Just constructs an HTTP Connection object (does nothing!)<br>
-	 */
-	public HTTPConnection() {
-		interSCityURI = Constants.INTERSCITY_URL;
-	}
 	/**
 	 * Constructor<br>
 	 * Use IP address 0.0.0.0 to not use InterSCity<br>
@@ -91,10 +83,10 @@ public class HTTPConnection {
 	 */
 	public HTTPConnection(String interSCityIPAddress) {
 		if(interSCityIPAddress == null) {
-			interSCityURI = Constants.INTERSCITY_URL;
+			endPointURI = Constants.INTERSCITY_URL;
 		}
 		else {
-			interSCityURI = "http://" + interSCityIPAddress + ":8000";
+			endPointURI = "http://" + interSCityIPAddress + ":8000";
 		}
 	}
 
@@ -110,9 +102,9 @@ public class HTTPConnection {
 	 * @throws HTTPException for HTTP exceptions
 	 */
 	public String sendDelete(String directory, String data) throws MalformedURLException, IOException, HTTPException {
-		if(interSCityURI.contains("0.0.0.0")) return null;
+		if(endPointURI.contains("0.0.0.0")) return null;
 		
-		final String url = interSCityURI + "/" + directory + "/" + data;
+		final String url = endPointURI + "/" + directory + "/" + data;
 		final String method = "DELETE";
 		
 		HttpURLConnection con = (HttpURLConnection) (new URL(url)).openConnection();
@@ -131,10 +123,6 @@ public class HTTPConnection {
 			throw new HTTPException(responseCode);
 		}
 
-//		System.err.println("\n[HTTPConnection.sendDelete] Sending 'DELETE' request to URL : " + url);
-//		System.err.println("[HTTPConnection.sendDelete] " + method + " parameters : " + data);
-//		System.err.println("[HTTPConnection.sendDelete] Response Code : " + responseCode);
-
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
 		StringBuffer answer = new StringBuffer();
@@ -146,7 +134,6 @@ public class HTTPConnection {
 		con.disconnect();
 
 		//print result
-//		System.err.println("[HTTPConnection.sendDelete] " + answer.toString());
 		return answer.toString();
 	}
 	
@@ -160,19 +147,16 @@ public class HTTPConnection {
 	 * @throws Exception 
 	 */
 	public String sendGet(String directory, String data) throws Exception {
-		if(interSCityURI.contains("0.0.0.0")) return null;
+		if(endPointURI.contains("0.0.0.0")) return null;
 		
 //		data = URLEncoder.encode(data, "UTF-8");
 
-		final String url = interSCityURI + "/" + directory + "?" + data;
+		final String url = endPointURI + "/" + directory + "?" + data;
 		final String method = "GET";
 
 		HttpURLConnection con = (HttpURLConnection) (new URL(url)).openConnection();
 		con.setRequestMethod(method);
 		con.setRequestProperty("User-agent", USER_AGENT);
-
-//		System.err.println("\n[" + this.getClass().getName() + "." + new Object(){}.getClass().getEnclosingMethod().getName() + "] Sending 'GET' request to URL: " + url);
-//		System.err.println("[HTTPConnection.sendGet] " + method + " parameters : " + data);
 
 		int responseCode;
 		try {
@@ -181,14 +165,12 @@ public class HTTPConnection {
 			throw new Exception(e.getMessage());
 		}
 		if(responseCode /100 != 2) {
-			System.err.println("[" + this.getClass().getName() + "." + new Object(){}.getClass().getEnclosingMethod().getName() + "] Sent 'GET' request to URL: " + url);
-			System.err.println("[" + this.getClass().getName() + "." + new Object(){}.getClass().getEnclosingMethod().getName() + "] " + method + " parameters: " + data);
-			System.err.println("[" + this.getClass().getName() + "." + new Object(){}.getClass().getEnclosingMethod().getName() + "] Response Code: " + responseCode);
+			Debug.error("Sent 'GET' request to URL: " + url);
+			Debug.error(method + " parameters: " + data);
+			Debug.error("Response Code: " + responseCode);
 			throw new HTTPException(responseCode);
 		}
 		
-//		System.err.println("[HTTPConnection.sendGet] Response Code : " + responseCode);
-
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
 		StringBuffer answer = new StringBuffer();		
@@ -200,7 +182,6 @@ public class HTTPConnection {
 		in.close();
 		con.disconnect();
 		
-//		System.err.println("[HTTPConnection.sendGet] " + answer.toString());
 		return answer.toString();
 	}
 
@@ -216,9 +197,9 @@ public class HTTPConnection {
 	 * @throws HTTPException
 	 */
 	public String sendPut(String directory, String data) throws MalformedURLException, IOException, HTTPException {
-		if(interSCityURI.contains("0.0.0.0")) return null;
+		if(endPointURI.contains("0.0.0.0")) return null;
 
-		final String url = interSCityURI + "/" + directory;
+		final String url = endPointURI + "/" + directory;
 		final String method = "PUT";
 		
 		HttpURLConnection con = (HttpURLConnection) (new URL(url)).openConnection();
@@ -238,10 +219,6 @@ public class HTTPConnection {
 			throw new HTTPException(responseCode);
 		}
 
-//		System.err.println("\n[HTTPConnection.sendPut] Sending 'PUT' request to URL : " + url);
-//		System.err.println("[HTTPConnection.sendPut] " + method + " parameters : " + data);
-//		System.err.println("[HTTPConnection.sendPut] Response Code : " + responseCode);
-
 		BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 		String inputLine;
 		StringBuffer answer = new StringBuffer();		
@@ -253,7 +230,6 @@ public class HTTPConnection {
 		con.disconnect();
 		
 		//print result
-//		System.err.println("[HTTPConnection.sendPut] Answer: " + answer.toString());
 		return answer.toString();
 	}
 
@@ -269,9 +245,9 @@ public class HTTPConnection {
 	 * @throws HTTPException 
 	 */
 	public String sendPost(String directory, String jsonString) throws MalformedURLException, IOException, HTTPException {
-		if(interSCityURI.contains("0.0.0.0")) return null;
+		if(endPointURI.contains("0.0.0.0")) return null;
 
-		final String url = interSCityURI + "/" + directory;
+		final String url = endPointURI + "/" + directory;
 		final String method = "POST";
 		
 		HttpURLConnection con = (HttpURLConnection) (new URL(url)).openConnection();
@@ -297,8 +273,6 @@ public class HTTPConnection {
 			}
 			in.close();
 			con.disconnect();
-			Debug.warning("URL = " + url + "\n" + jsonString);
-			Debug.warning("Code " + responseCode + "\n" + answer.toString());
 			throw new HTTPException("Code: " + responseCode + ": " + answer.toString());
 		}
 
@@ -315,6 +289,6 @@ public class HTTPConnection {
 		return answer.toString();
 	}
 	public String getIpAddress() {
-		return interSCityURI;
+		return endPointURI;
 	}
 }
