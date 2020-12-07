@@ -18,7 +18,6 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.apache.log4j.Logger;
 
 import br.com.meslin.alert.connection.Constants;
 import br.com.meslin.alert.connection.HTTPException;
@@ -50,7 +49,7 @@ public class MyContextNetCore {
 
 	/** An interface to InterSCity */
 	private static InterSCity interSCity;
-	public static Logger log = Logger.getLogger(MyContextNetCore.class);
+//	public static Logger log = Logger.getLogger(MyContextNetCore.class);
 	/** stores a queue of bus data to be sent to the InterSCity */
 	public static ConcurrentLinkedQueue<InterSCityData> mobileObjectQueue = new ConcurrentLinkedQueue<InterSCityData>();
 	
@@ -61,6 +60,12 @@ public class MyContextNetCore {
 	 * 
 	 */
 	public MyContextNetCore() {
+		// HTTP agent to request map tiles
+		String httpAgent = System.getProperty("http.agent");
+		if (httpAgent == null) {
+		    httpAgent = "(" + System.getProperty("os.name") + " / " + System.getProperty("os.version") + " / " + System.getProperty("os.arch") + ")";
+		}
+		System.setProperty("http.agent", "RegionAlert/1.0 " + httpAgent);
 	}
 
 	/**

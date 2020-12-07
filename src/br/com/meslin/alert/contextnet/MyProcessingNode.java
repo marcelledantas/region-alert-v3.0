@@ -53,7 +53,7 @@ public class MyProcessingNode implements UDIDataReaderListener<ApplicationObject
 		Thread receiveData = new ReceiveData(interSCityIPAddress);
 		receiveData.start();
 		
-		// a thread to act as an actuator and receive mesagens whenever a new alert is created
+		// a thread to act as an actuator and receive messages whenever a new alert is created
 		Thread subscriberListener;
 		try {
 			subscriberListener = new SubscriberListener(interSCityIPAddress);
