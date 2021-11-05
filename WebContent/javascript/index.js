@@ -31,7 +31,7 @@ function submitAlert() {
 	// create the http request object
 	var xmlhttp = createRequest();
 	if(xmlhttp == null) {
-		alert("Navegador not compatible with AJAX!");
+		alert("Browser not compatible with AJAX!");
 		return;
 	}
 	
@@ -70,7 +70,7 @@ function getAreas() {
 	
 	var xmlhttp = createRequest();
 	if(xmlhttp == null) {
-		alert("Navegador not compatible with AJAX!");
+		alert("Browser not compatible with AJAX!");
 		return;
 	}
 	xmlhttp.open("get", "GetRegion", true);

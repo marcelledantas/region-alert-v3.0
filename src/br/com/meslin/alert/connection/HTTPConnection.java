@@ -79,14 +79,14 @@ public class HTTPConnection {
 	/**
 	 * Constructor<br>
 	 * Use IP address 0.0.0.0 to not use InterSCity<br>
-	 * @param interSCityIPAddress
+	 * @param interSCityIPAddress InterSCity IP address, and from now on, TCP port also (please, do *NOT* include http protocol)
 	 */
 	public HTTPConnection(String interSCityIPAddress) {
 		if(interSCityIPAddress == null) {
 			endPointURI = Constants.INTERSCITY_URL;
 		}
 		else {
-			endPointURI = "http://" + interSCityIPAddress + ":8000";
+			endPointURI = "http://" + interSCityIPAddress;
 		}
 	}
 
@@ -155,6 +155,7 @@ public class HTTPConnection {
 		final String method = "GET";
 
 		HttpURLConnection con = (HttpURLConnection) (new URL(url)).openConnection();
+		Debug.info("tentando " + url);
 		con.setRequestMethod(method);
 		con.setRequestProperty("User-agent", USER_AGENT);
 
@@ -264,6 +265,7 @@ public class HTTPConnection {
 
 		int responseCode = con.getResponseCode();
 		if(responseCode /100 != 2) {
+			Debug.info("Response code = " + responseCode);
 			BufferedReader in = new BufferedReader(new InputStreamReader(con.getErrorStream()));
 			String inputLine;
 			StringBuffer answer = new StringBuffer();

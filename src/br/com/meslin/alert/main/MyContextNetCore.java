@@ -37,6 +37,10 @@ import br.com.meslin.alert.util.StaticLibrary;
  *
  */
 public class MyContextNetCore {
+	// From: https://stackoverflow.com/questions/56397206/gluon-maps-doesnt-load-the-map-and-throws-an-exception
+	static {
+	    System.setProperty("http.agent", "Gluon Mobile/1.0.3");
+	}
 	/*
 	 * Configuration parameters
 	 */
@@ -115,7 +119,7 @@ public class MyContextNetCore {
 			cmd = parser.parse(options, args);
 		} catch (ParseException e) {
 			System.err.println("Date = " +  new Date());
-			formatter.printHelp("BenchmarkMyCore", options);
+			formatter.printHelp("MyContextNetCore", options);
 			e.printStackTrace();
 			return;
 		}
@@ -176,7 +180,7 @@ public class MyContextNetCore {
 		new MyProcessingNode(interSCityIPAddress, mobileObjectQueue);
 
 		/*
-		 * Create a thread to send bus data to the InterSCity
+		 * Create a thread to send user data to the InterSCity
 		 */
 		Thread consumer = new Thread(new InterSCityConsumer(interSCity, mobileObjectQueue));
 		consumer.start();

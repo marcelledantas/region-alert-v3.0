@@ -148,15 +148,6 @@ public class StaticLibrary {
 			try {
 				workdir = "/media/meslin/643CA9553CA92352/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/";
 				br = new BufferedReader(new FileReader(workdir + filename));
-				String line;
-				while((line = br.readLine()) != null)
-				{
-					String[] data = line.split(",");
-					Region region = new Region();
-					region.setNumber(Integer.parseInt(data[0]));
-					region.setFilename(data[1].trim());
-					regions.add(region);
-				}
 			}
 			catch (IOException e) {
 				Debug.warning("Error while reading " + workdir + filename, e);
@@ -167,17 +158,34 @@ public class StaticLibrary {
 					Debug.warning(file.getAbsolutePath());
 				}
 			}
-			finally {
-				if(br != null) {
-					try {
-						br.close();
-					}
-					catch (IOException e) {
-						Debug.warning("Could not close " + workdir + filename, e);
-					}
+		}
+		
+		String line;
+		try {
+			while((line = br.readLine()) != null)
+			{
+				String[] data = line.split(",");
+				Region region = new Region();
+				region.setNumber(Integer.parseInt(data[0]));
+				region.setFilename(data[1].trim());
+				regions.add(region);
+			}
+		}
+		catch (NumberFormatException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			if(br != null) {
+				try {
+					br.close();
+				}
+				catch (IOException e) {
+					Debug.warning("Could not close " + workdir + filename, e);
 				}
 			}
 		}
+
 		return regions;
 	}
 	
@@ -198,14 +206,6 @@ public class StaticLibrary {
 			try {
 				workdir = "/media/meslin/643CA9553CA92352/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/";
 				br = new BufferedReader(new FileReader(workdir + filename));
-				String line;
-				while((line = br.readLine()) != null) {
-					Coordinate coordinate = new Coordinate(
-							Double.parseDouble(line.substring(0, line.indexOf(" ")).trim()),
-							Double.parseDouble(line.substring(line.indexOf(" ")).trim())
-							);
-					points.add(coordinate);
-				}
 			}
 			catch (IOException e) {
 				Debug.warning("Could not read region file " + workdir + filename, e);
@@ -216,15 +216,29 @@ public class StaticLibrary {
 					Debug.warning(file.getAbsolutePath());
 				}
 			}
-			finally {
-				if(br != null) {
-					try {
-						br.close();
-					}
-					catch (IOException e) {
-						System.err.println("Date = " + new Date());
-						e.printStackTrace();
-					}
+		}
+		String line;
+		try {
+			while((line = br.readLine()) != null) {
+				Coordinate coordinate = new Coordinate(
+						Double.parseDouble(line.substring(0, line.indexOf(" ")).trim()),
+						Double.parseDouble(line.substring(line.indexOf(" ")).trim())
+						);
+				points.add(coordinate);
+			}
+		}
+		catch (NumberFormatException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		finally {
+			if(br != null) {
+				try {
+					br.close();
+				}
+				catch (IOException e) {
+					System.err.println("Date = " + new Date());
+					e.printStackTrace();
 				}
 			}
 		}

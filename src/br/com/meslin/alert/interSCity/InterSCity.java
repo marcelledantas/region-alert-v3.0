@@ -566,8 +566,6 @@ public class InterSCity {
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("data", data);
 		
-		Debug.warning("Publishing command:\n" + jsonObject.toString(2));
-		
 //		HTTPConnection connection = new HTTPConnection();
 		connection.sendPost("actuator/commands", jsonObject.toString());
 	}
