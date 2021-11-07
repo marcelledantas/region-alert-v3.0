@@ -1,6 +1,6 @@
 # REGIONAlert
-#####(former AlertCity)
-##An alert city system
+##### (former AlertCity)
+## An alert city system
 
 Please, configure:
 * Border database physical directory at:
