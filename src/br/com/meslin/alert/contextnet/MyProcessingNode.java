@@ -33,8 +33,9 @@ public class MyProcessingNode implements UDIDataReaderListener<ApplicationObject
 	/**
 	 * Constructor
 	 * @param interSCityDataQueue
+	 * @throws Exception 
 	 */
-	public MyProcessingNode(String interSCityIPAddress, ConcurrentLinkedQueue<InterSCityData> interSCityDataQueue) {
+	public MyProcessingNode(String interSCityIPAddress, ConcurrentLinkedQueue<InterSCityData> interSCityDataQueue) throws Exception {
 		this();
 
 		this.processingNode = UniversalDDSLayerFactory.getInstance();

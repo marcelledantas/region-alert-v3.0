@@ -17,7 +17,7 @@ public class ReceiveData extends Thread {
 	private MyNodeConnection nodeConnection;
 	private InterSCity interSCity;
 
-	public ReceiveData(String interSCityIPAddress) {
+	public ReceiveData(String interSCityIPAddress) throws Exception {
 		// create a new connection to send message to mobile-hub
 		nodeConnection = new MyNodeConnection(StaticLibrary.contextNetIPAddress, StaticLibrary.contextNetPortNumber);
 		this.interSCity = new InterSCity(interSCityIPAddress);

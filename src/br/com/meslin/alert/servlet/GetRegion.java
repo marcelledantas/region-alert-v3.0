@@ -4,8 +4,8 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -22,24 +22,28 @@ import br.com.meslin.alert.util.StaticLibrary;
  */
 @WebServlet(
 		description = "Read the file with region numbers and filenames and returns a JSON structure",
-		urlPatterns = { "/GetRegion" }, 
-		initParams = {
+		urlPatterns = { "/GetRegion" }//, 
+//		initParams = {
 //				@WebInitParam(name = "workDir", value = "/media/meslin/643CA9553CA92352/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/", description = "Working directory"),
 //				@WebInitParam(name = "workDir", value = "/home/alert/", description = "Working directory"),
-				@WebInitParam(name = "workDir", value = "/media/meslin/4E7E313D7E311EE1/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/", description = "Working directory"),
-				@WebInitParam(name = "groupDescriptionFilename", value = "Bairros/RioDeJaneiro.lista", description = "Group description filename"),
-		})
+//				@WebInitParam(name = "workDir", value = "/media/meslin/4E7E313D7E311EE1/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/", description = "Working directory"),
+//				@WebInitParam(name = "groupDescriptionFilename", value = "Bairros/RioDeJaneiro.lista", description = "Group description filename"),
+//		}
+)
 public class GetRegion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private List<Region> regionList;
-
+	private String workdir;
+	private String filename;
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	ServletContext application = getServletContext();
 		PrintWriter out = response.getWriter();
-		String workdir = getServletConfig().getInitParameter("workDir");
-		String filename = getServletConfig().getInitParameter("groupDescriptionFilename");
+		workdir = application.getInitParameter("workDir");
+		filename = application.getInitParameter("groupDescriptionFilename");
 		this.regionList = StaticLibrary.readFilenamesFile(workdir, filename);
 		JSONObject jsonObject = new JSONObject();
 		for(Region region : regionList) {

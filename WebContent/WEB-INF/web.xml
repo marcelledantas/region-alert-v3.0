@@ -3,7 +3,8 @@
   <context-param>
 	<!-- InterSCity IP address and TCP port - do *NOT* include http protocol  -->
     <param-name>interSCityIPAddress</param-name>
-    <param-value>cidadesinteligentes.lsdi.ufma.br</param-value>
+    <!-- <param-value>cidadesinteligentes.lsdi.ufma.br</param-value> -->
+    <param-value>172.16.110.131:8000</param-value>
   </context-param>
   <context-param>
     <param-name>gatewayIP</param-name>
@@ -12,5 +13,15 @@
   <context-param>
     <param-name>gatewayPort</param-name>
     <param-value>5500</param-value>
+  </context-param>
+  <context-param>
+  	<description>Working directory</description>
+  	<param-name>workDir</param-name>
+  	<param-value>/media/meslin/4E7E313D7E311EE1/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/</param-value>
+  </context-param>
+  <context-param>
+  	<description>Group description filename</description>
+  	<param-name>groupDescriptionFilename</param-name>
+  	<param-value>Bairros/RioDeJaneiro.lista</param-value>
   </context-param>
 </web-app>

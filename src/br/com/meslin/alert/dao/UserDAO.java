@@ -20,8 +20,16 @@ import br.com.meslin.alert.model.Person;
  */
 public class UserDAO implements DAO<Person> {
 	private static UserDAO instance;
-	private final static String CLASSNAME = "com.mysql.jdbc.Driver";
-	private final static String DBURL = "jdbc:mysql://alert/CITYALERT?user=ROOT&password=alert";
+	/*
+	 * MySQL
+	 */
+//	private final static String CLASSNAME = "com.mysql.jdbc.Driver";
+//	private final static String DBURL = "jdbc:mysql://alert/CITYALERT?user=ROOT&password=alert";
+	/*
+	 * SQLite
+	 */
+	private final static String CLASSNAME = "org.sqlite.JDBC";
+	private final static String DBURL = "jdbc:sqlite:REGIONAlert.db";
 	private Connection connection;
 	
 	/**

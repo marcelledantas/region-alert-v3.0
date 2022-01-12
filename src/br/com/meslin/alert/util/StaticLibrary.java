@@ -13,9 +13,19 @@ import java.util.UUID;
 import java.util.jar.JarFile;
 import java.util.zip.ZipEntry;
 
+import javax.xml.XMLConstants;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import lac.cnclib.net.groups.GroupCommunicationManager;
 
 import org.openstreetmap.gui.jmapviewer.Coordinate;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import br.com.meslin.alert.model.Region;
 
@@ -146,6 +156,7 @@ public class StaticLibrary {
 			br = new BufferedReader(new FileReader(workdir + filename));
 		} catch (IOException e0) {
 			try {
+				Debug.warning("Error while reading " + workdir + filename, e0);
 				workdir = "/media/meslin/643CA9553CA92352/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/";
 				br = new BufferedReader(new FileReader(workdir + filename));
 			}
@@ -204,6 +215,7 @@ public class StaticLibrary {
 			br = new BufferedReader(new FileReader(workdir + filename));
 		} catch (IOException e0) {
 			try {
+				Debug.warning("Could not read region file " + workdir + filename, e0);
 				workdir = "/media/meslin/643CA9553CA92352/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/";
 				br = new BufferedReader(new FileReader(workdir + filename));
 			}
@@ -285,4 +297,44 @@ public class StaticLibrary {
 		}
 		return buffer;
 	}
+	
+	
+	
+	public static String getInitParameter(String name) {
+		String workDir = System.getProperty("user.dir");
+		String filename = "WebContent/WEB-INF/web.xml";
+		String data = null;
+		
+	    // Instantiate the Factory
+	    DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+
+	    try {
+	    	// optional, but recommended
+	        // process XML securely, avoid attacks like XML External Entities (XXE)
+	        dbf.setFeature(XMLConstants.FEATURE_SECURE_PROCESSING, true);
+
+	        // parse XML file
+	        DocumentBuilder db = dbf.newDocumentBuilder();
+	        Document doc = db.parse(new File(workDir + "/" + filename));
+
+	        // optional, but recommended
+	        // http://stackoverflow.com/questions/13786607/normalization-in-dom-parsing-with-java-how-does-it-work
+	        doc.getDocumentElement().normalize();
+
+	        // get <context-param>
+	        NodeList list = doc.getElementsByTagName("context-param");
+	        for (int i = 0; i < list.getLength(); i++) {
+	        	Node node = list.item(i);
+        		Element element = (Element) node;
+	        	if (node.getNodeType() == Node.ELEMENT_NODE && 
+	        		element.getElementsByTagName("param-name").item(0).getTextContent().equals(name)) {
+	        		// get text
+	                data = element.getElementsByTagName("param-value").item(0).getTextContent();
+	        	}
+	        }
+	    } catch (IOException | ParserConfigurationException | SAXException e) {	
+	    	e.printStackTrace();
+	    }
+	    return data; 
+	}	
 }

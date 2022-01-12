@@ -80,10 +80,12 @@ public class HTTPConnection {
 	 * Constructor<br>
 	 * Use IP address 0.0.0.0 to not use InterSCity<br>
 	 * @param interSCityIPAddress InterSCity IP address, and from now on, TCP port also (please, do *NOT* include http protocol)
+	 * @throws Exception 
 	 */
-	public HTTPConnection(String interSCityIPAddress) {
+	public HTTPConnection(String interSCityIPAddress) throws Exception {
 		if(interSCityIPAddress == null) {
-			endPointURI = Constants.INTERSCITY_URL;
+			endPointURI = "http://0.0.0.0";
+			throw new Exception("InterSCity ip address address cannot be NULL");
 		}
 		else {
 			endPointURI = "http://" + interSCityIPAddress;
@@ -155,7 +157,6 @@ public class HTTPConnection {
 		final String method = "GET";
 
 		HttpURLConnection con = (HttpURLConnection) (new URL(url)).openConnection();
-		Debug.info("tentando " + url);
 		con.setRequestMethod(method);
 		con.setRequestProperty("User-agent", USER_AGENT);
 
@@ -266,6 +267,8 @@ public class HTTPConnection {
 		int responseCode = con.getResponseCode();
 		if(responseCode /100 != 2) {
 			Debug.info("Response code = " + responseCode);
+			Debug.info("Endpoint = " + url);
+			Debug.info("JSON = " + jsonString);
 			BufferedReader in = new BufferedReader(new InputStreamReader(con.getErrorStream()));
 			String inputLine;
 			StringBuffer answer = new StringBuffer();

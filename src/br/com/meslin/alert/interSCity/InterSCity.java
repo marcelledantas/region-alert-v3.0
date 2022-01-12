@@ -40,8 +40,9 @@ public class InterSCity {
 	/**
 	 * Constructor<br>
 	 * @param interSCityIPAddress
+	 * @throws Exception 
 	 */
-	public InterSCity(String interSCityIPAddress) {
+	public InterSCity(String interSCityIPAddress) throws Exception {
 		this(new HTTPConnection(interSCityIPAddress));
 	}
 	
@@ -106,7 +107,7 @@ public class InterSCity {
 		for(String capability : capabilities) {
 			data.accumulate("capabilities", capability);
 		}
-		data.accumulate("capabilities", "uv");	// workaround for the one postion JSON array bug - capability not used
+		data.accumulate("capabilities", "fake");	// workaround for the one postion JSON array bug - capability not used
 		data.put("status", "active");
 		data.put("lat", lat);
 		data.put("lon", lon);
@@ -327,6 +328,7 @@ public class InterSCity {
 		for(int i=0; i<capabilities.length(); i++) {
 			if(((String)((JSONObject)capabilities.get(i)).get("name")).equals("city_alerting")) {
 				found = true;
+				break;
 			}
 		}
 		if(!found) {
@@ -345,6 +347,7 @@ public class InterSCity {
 		for(int i=0; i<capabilities.length(); i++) {
 			if(((String)((JSONObject)capabilities.get(i)).get("name")).equals("person")) {
 				found = true;
+				break;
 			}
 		}
 		if(!found) {
@@ -362,6 +365,7 @@ public class InterSCity {
 		for(int i=0; i<capabilities.length(); i++) {
 			if(((String)((JSONObject)capabilities.get(i)).get("name")).equals("alertListener")) {
 				found = true;
+				break;
 			}
 		}
 		if(!found) {
@@ -372,6 +376,24 @@ public class InterSCity {
 		}
 		else {
 			Debug.info("Capability alertListener found!");
+		}
+
+		// check for fake capability
+		found = false;
+		for(int i=0; i<capabilities.length(); i++) {
+			if(((String)((JSONObject)capabilities.get(i)).get("name")).equals("fake")) {
+				found = true;
+				break;
+			}
+		}
+		if(!found) {
+			// fake capability not found, need to be created now!
+			Debug.info("Capability fake not found, creating one");
+			String data = "{ \"name\": \"fake\", \"description\": \"fake capability (workaround)\", \"capability_type\": \"actuator\" }";
+			response = connection.sendPost("catalog/capabilities", data);
+		}
+		else {
+			Debug.info("Capability fake found!");
 		}
 	}
 
@@ -437,7 +459,7 @@ public class InterSCity {
 		 *             "country": null,
 		 *             "capabilities": [
 		 *                 "city_alerting",
-		 *                 "uv"
+		 *                 "fake"
 		 *             ]
 		 *         },...
 		 *         ...
@@ -526,7 +548,7 @@ public class InterSCity {
 			subscription.accumulate("capabilities", capability);			
 		}
 		// add a dummy capability to correct JSONObject bug when creating a single element array
-		subscription.accumulate("capabilities", "uv");
+		subscription.accumulate("capabilities", "fake");
 		subscription.put("url", url);
 		JSONObject jsonObject = new JSONObject();
 		jsonObject.put("subscription", subscription);

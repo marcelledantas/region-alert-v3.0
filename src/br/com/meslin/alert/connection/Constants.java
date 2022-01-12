@@ -16,11 +16,13 @@ public class Constants {
 		5502					// group 2
 	};
 
+	/* Starting in this version, InterSCity address cannot be NULL */
 	/** InterSCity addresses */
 //	public static final String INTERSCITY_URL = "http://alert:8000";
 //	public static final String INTERSCITY_URL = "http://127.0.0.1:8000";
 //	public static final String INTERSCITY_URL = "http://VM005:8000";
-	public static final String INTERSCITY_URL = "http://cidadesinteligentes.lsdi.ufma.br";
+//	public static final String INTERSCITY_URL = "http://cidadesinteligentes.lsdi.ufma.br";
+//	public static final String INTERSCITY_URL = "http://172.16.110.131:8000";
 //	public static final String INTERSCITY_URL = "http://172.16.0.201:8000";
 //	public static final String INTERSCITY_URL = "http://scp.inf.puc-rio.br:8000";
 }

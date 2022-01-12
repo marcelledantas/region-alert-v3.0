@@ -8,9 +8,6 @@ import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-import lac.cnet.groupdefiner.components.GroupDefiner;
-import lac.cnet.groupdefiner.components.groupselector.GroupSelector;
-
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
@@ -19,7 +16,6 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import br.com.meslin.alert.connection.Constants;
 import br.com.meslin.alert.connection.HTTPException;
 import br.com.meslin.alert.contextnet.MyGroupSelector;
 import br.com.meslin.alert.contextnet.MyProcessingNode;
@@ -28,6 +24,8 @@ import br.com.meslin.alert.interSCity.InterSCityConsumer;
 import br.com.meslin.alert.interSCity.InterSCityData;
 import br.com.meslin.alert.util.Debug;
 import br.com.meslin.alert.util.StaticLibrary;
+import lac.cnet.groupdefiner.components.GroupDefiner;
+import lac.cnet.groupdefiner.components.groupselector.GroupSelector;
 
 /**
  * @author meslin
@@ -47,7 +45,7 @@ public class MyContextNetCore {
 	/** InterSCity IP address */
 	private static String interSCityIPAddress;
 	/** group description region file */
-	private static String workdir;
+	private static String workDir;
 	/** group description file name */
 	private static String filename;
 
@@ -82,33 +80,36 @@ public class MyContextNetCore {
 		// Build date
 		final Date buildDate = StaticLibrary.getClassBuildTime();
 		System.out.println("BenchmarMyCore builed at " + buildDate);
-		
+	    System.out.println("Working Directory is " + System.getProperty("user.dir"));
+	    
 		// get command line options
 		Options options = new Options();
 		Option option;
-		
+/*
 		option = new Option("a", "address", true, "ContextNet Gateway IP address");
 		option.setRequired(false);
 		options.addOption(option);
-
+*/
+/*
 		option = new Option("f", "groupfilename", true, "Group description filename");
 		option.setRequired(true);
 		options.addOption(option);
-		
+*/		
 		option = new Option("h", "force-headless", false, "Run as in a headless environment");
 		option.setRequired(false);
 		options.addOption(option);
-
+/*
 		option = new Option("i", "InterSCity", true, "InterSCity IP address");
 		option.setRequired(true);
 		options.addOption(option);
-		
+*/
+/*
 		option = new Option("p", "port", true, "ContextNet Gateway TCP port number");
 		option.setRequired(false);
 		options.addOption(option);
-
-		option = new Option("w", "workdir", true, "Directory where the group description filename is");
-		option.setRequired(true);
+*/
+		option = new Option("w", "workdir", true, "Directory where WebContent/WEB-INF/web.xml is located");
+		option.setRequired(false);
 		options.addOption(option);
 
 		CommandLineParser parser = new DefaultParser();
@@ -124,22 +125,24 @@ public class MyContextNetCore {
 			return;
 		}
 		
-		// getting command line options
+		// getting command line and init options
 		// ContextNet IP address
-		if((StaticLibrary.contextNetIPAddress = cmd.getOptionValue("address")) == null) {
-			StaticLibrary.contextNetIPAddress = Constants.GATEWAY_IP;
-		}
+		StaticLibrary.contextNetIPAddress = StaticLibrary.getInitParameter("gatewayIP");
+
 		// group description filename
-		workdir = cmd.getOptionValue("workdir");
-		filename = cmd.getOptionValue("groupfilename");
+		if((workDir = cmd.getOptionValue("workdir")) == null) workDir = StaticLibrary.getInitParameter("workDir");
+	    System.out.println("Working Directory set to " + workDir);
+		filename = StaticLibrary.getInitParameter("groupDescriptionFilename");	// filename = cmd.getOptionValue("groupfilename");
+		
 		// ContextNet TCP port number
 		try {
-			StaticLibrary.contextNetPortNumber = Integer.parseInt(cmd.getOptionValue("port"));
+			StaticLibrary.contextNetPortNumber = Integer.parseInt(StaticLibrary.getInitParameter("gatewayPort"));
 		} catch(Exception e) {
-			StaticLibrary.contextNetPortNumber = Constants.GATEWAY_PORT;
+			e.printStackTrace();
 		}
+		
 		// InterSCity IP address
-		interSCityIPAddress = cmd.getOptionValue("InterSCity");	// null if not available, but, by now, it is mandatory, so never NULL
+		interSCityIPAddress = StaticLibrary.getInitParameter("interSCityIPAddress");	// null if not available, but, by now, it is mandatory, so never NULL
 		
 		StaticLibrary.forceHeadless = cmd.hasOption("force-headless");
 
@@ -160,7 +163,13 @@ public class MyContextNetCore {
 		System.out.println("Ready, set...");
 
 		// check and set InterSCity capabilities
-		interSCity = new InterSCity(interSCityIPAddress);
+		try {
+			interSCity = new InterSCity(interSCityIPAddress);
+		}
+		catch (Exception e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 			interSCity.checkInterSCity();
 		} catch (IOException | HTTPException e) {
@@ -171,13 +180,19 @@ public class MyContextNetCore {
 		/*
 		 * Creating GroupSelector
 		 */
-		GroupSelector groupSelector = new MyGroupSelector(workdir, filename);
+		GroupSelector groupSelector = new MyGroupSelector(workDir, filename);
 		new GroupDefiner(groupSelector);
 		
 		/*
 		 * Create Processing Node
 		 */
-		new MyProcessingNode(interSCityIPAddress, mobileObjectQueue);
+		try {
+			new MyProcessingNode(interSCityIPAddress, mobileObjectQueue);
+		}
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 		/*
 		 * Create a thread to send user data to the InterSCity

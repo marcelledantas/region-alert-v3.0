@@ -42,7 +42,15 @@ public class PutAlert extends HttpServlet {
 		//int gatewayPort = Integer.parseInt(application.getInitParameter("gatewayPort"));
 		/** InterSCity ip address */
     	String interSCityIPAddress = application.getInitParameter("interSCityIPAddress");
-		InterSCity interSCity = new InterSCity(interSCityIPAddress);
+		InterSCity interSCity;
+		try {
+			interSCity = new InterSCity(interSCityIPAddress);
+		}
+		catch (Exception e) {
+			// TODO Auto-generated catch block
+			interSCity = null;
+			e.printStackTrace();
+		}
 
 		Alert alert = new Alert();
 		
@@ -65,8 +73,7 @@ public class PutAlert extends HttpServlet {
 			}
 		} else {
 			// convert minutes to milliseconds and add to the start date in milliseconds,
-			// then, converto do Date and set endTimestamp
-			
+			// then, convert to Date and set endTimestamp
 			DateFormat format = new SimpleDateFormat("");
 			Date date;
 			try {

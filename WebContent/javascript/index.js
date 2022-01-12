@@ -43,7 +43,8 @@ function submitAlert() {
 			if(xmlhttp.status == 200) {
 				setStatus(xmlhttp.responseText);
 			} else {
-				setStatus("Alert not created.");
+				setStatus("Alert not created!");
+				console.log("Alert not created because error " + xmlhttp.status);
 			}
 		}
 	}

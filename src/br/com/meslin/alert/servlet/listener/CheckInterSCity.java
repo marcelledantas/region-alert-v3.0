@@ -1,7 +1,5 @@
 package br.com.meslin.alert.servlet.listener;
 
-import java.io.IOException;
-
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextAttributeEvent;
 import javax.servlet.ServletContextAttributeListener;
@@ -19,7 +17,6 @@ import javax.servlet.http.HttpSessionBindingListener;
 import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 
-import br.com.meslin.alert.connection.HTTPException;
 import br.com.meslin.alert.interSCity.InterSCity;
 
 /**
@@ -72,10 +69,10 @@ public class CheckInterSCity implements ServletContextListener, ServletContextAt
     public void contextInitialized(ServletContextEvent servletContextEvent)  {
     	ServletContext application = servletContextEvent.getServletContext();
     	String interSCityIPAddress = application.getInitParameter("interSCityIPAddress");
-    	InterSCity interSCity = new InterSCity(interSCityIPAddress);
     	try {
+        	InterSCity interSCity = new InterSCity(interSCityIPAddress);
 			interSCity.checkInterSCity();
-		} catch (IOException | HTTPException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
   }
