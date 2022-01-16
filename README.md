@@ -33,6 +33,9 @@ Capabilities are created by br.com.meslin.alert.servlet.listener.CheckInterSCity
 * [Apache Tomcat 8.5](https://tomcat.apache.org/download-80.cgi)
 * [MySQL](https://dev.mysql.com/downloads/)
 
+2022-01-15
+* Create table statement executed when instantiate database object
+
 2022-01-11
 * Fixed: get initial parameters from web
 * -w command line parameter no longer needed (now, it's optional)

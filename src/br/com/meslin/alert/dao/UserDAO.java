@@ -33,9 +33,11 @@ public class UserDAO implements DAO<Person> {
 	private Connection connection;
 	
 	/**
+	 * Constructor
+	 * @throws SQLException 
 	 * 
 	 */
-	private UserDAO() {
+	private UserDAO() throws SQLException {
 		try {
 			Class.forName(CLASSNAME);
 			this.connection = DriverManager.getConnection(DBURL);
@@ -43,9 +45,17 @@ public class UserDAO implements DAO<Person> {
 			// Auto-generated catch block
 			e.printStackTrace();
 		}
+		
+		final String SQL = "CREATE TABLE IF NOT EXISTS AREA (" + 
+				"	ID integer PRIMARY KEY AUTOINCREMENT," + 
+				"   fk_USERNAME char(50) NOT NULL," + 
+				"	AREA integer NOT NULL" + 
+				");";
+		PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+		preparedStatement.execute();
 	}
 	
-	public static synchronized UserDAO getInstance() {
+	public static synchronized UserDAO getInstance() throws SQLException {
 		if(instance == null) {
 			instance = new UserDAO();
 		}
@@ -76,7 +86,6 @@ public class UserDAO implements DAO<Person> {
 	@Override
 	public void save(Person t) {
 		// Auto-generated method stub
-
 	}
 
 	/* (non-Javadoc)
@@ -85,7 +94,6 @@ public class UserDAO implements DAO<Person> {
 	@Override
 	public void update(Person t, String[] params) {
 		// Auto-generated method stub
-
 	}
 
 	/* (non-Javadoc)
@@ -94,7 +102,6 @@ public class UserDAO implements DAO<Person> {
 	@Override
 	public void delete(Person t) {
 		// Auto-generated method stub
-
 	}
 
 	/* (non-Javadoc)
@@ -115,5 +122,4 @@ public class UserDAO implements DAO<Person> {
 
 		return areas;
 	}
-
 }
