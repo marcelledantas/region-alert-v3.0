@@ -14313,3 +14313,151 @@ Node        : meslin-laptop
 Process     : java <38892>
 Thread      : conflictResolver 7fa2f3aeb700
 Internals   : 6.9.181127OSS/42c7caf/42c7caf/v_serviceChangeState/v_service.c/266/0/1642286261.683791549/0
+========================================================================================
+Report      : INFO
+Date        : 2022-01-19T12:44:54-0300
+Description : ---------------------------------------------------------------
+              -- The service is using the following configuration settings --
+              ---------------------------------------------------------------
+              Domain (id)          : ospl_sp_ddsi (0)
+              Storage              : 0 Kbytes
+              Storage threshold    : 1024 Kbytes
+              Storage address      : Not available
+              Locking              : default
+              Memory mode          : Heap memory
+              Builtin topics       : true
+              Priority inheritance : false
+              SystemId             : 490041582 from [1,2147483647]
+Node        : meslin-laptop
+Process     : java <191881>
+Thread      : spliced 7f148cf3e700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/The OpenSplice domain service/u_domain.c/785/0/1642607094.277196134/0
+========================================================================================
+Report      : INFO
+Date        : 2022-01-19T12:44:54-0300
+Description : Service cmsoap disabled
+Node        : meslin-laptop
+Process     : java <191881>
+Thread      : spliced 7f148cf3e700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/OpenSplice domain service/sr_componentInfo.c/446/0/1642607094.278686526/0
+========================================================================================
+Report      : INFO
+Date        : 2022-01-19T12:44:54-0300
+Description : ++++++++++++++++++++++++++++++++++++++++++++++++
+              ++ The service 'splicedaemon' is now operational. 
+              ++++++++++++++++++++++++++++++++++++++++++++++++
+Node        : meslin-laptop
+Process     : java <191881>
+Thread      : spliced 7f148cf3e700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/v_serviceChangeState/v_service.c/266/0/1642607094.279221486/0
+========================================================================================
+Report      : WARNING
+Date        : 2022-01-19T12:44:54-0300
+Description : using network interface wlp0s20f3 (10.0.0.101) selected arbitrarily from: wlp0s20f3, enx28ee521160ec, br-630a0e3c52f9, br-ca0ae82764bf, docker0, br-f43aa21577f8, vmnet1, vmnet8
+
+Node        : meslin-laptop
+Process     : java <191881>
+Thread      : ddsi2 7f1487fff700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/q_nwif.c/989/0/1642607094.306902877/0
+========================================================================================
+Report      : INFO
+Date        : 2022-01-19T12:44:54-0300
+Description : ++++++++++++++++++++++++++++++++++++++++++++++++
+              ++ The service 'ddsi2' is now operational. 
+              ++++++++++++++++++++++++++++++++++++++++++++++++
+Node        : meslin-laptop
+Process     : java <191881>
+Thread      : ddsi2 7f1487fff700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/v_serviceChangeState/v_service.c/266/0/1642607094.313365852/0
+========================================================================================
+Report      : INFO
+Date        : 2022-01-19T12:44:54-0300
+Description : The durability service can be identified by ID: 490041582
+Node        : meslin-laptop
+Process     : java <191881>
+Thread      : durability 7f148c438700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/DurabilityService/d_durability.c/554/0/1642607094.614216082/0
+========================================================================================
+Report      : INFO
+Date        : 2022-01-19T12:45:01-0300
+Description : ++++++++++++++++++++++++++++++++++++++++++++++++
+              ++ The service 'durability' is now operational. 
+              ++++++++++++++++++++++++++++++++++++++++++++++++
+Node        : meslin-laptop
+Process     : java <191881>
+Thread      : conflictResolver 7f148790a700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/v_serviceChangeState/v_service.c/266/0/1642607101.836139791/0
+========================================================================================
+Report      : INFO
+Date        : 2022-01-19T12:49:57-0300
+Description : ---------------------------------------------------------------
+              -- The service is using the following configuration settings --
+              ---------------------------------------------------------------
+              Domain (id)          : ospl_sp_ddsi (0)
+              Storage              : 0 Kbytes
+              Storage threshold    : 1024 Kbytes
+              Storage address      : Not available
+              Locking              : default
+              Memory mode          : Heap memory
+              Builtin topics       : true
+              Priority inheritance : false
+              SystemId             : 1340996519 from [1,2147483647]
+Node        : meslin-laptop
+Process     : java <204319>
+Thread      : spliced 7fb3d5d3a700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/The OpenSplice domain service/u_domain.c/785/0/1642607397.330876515/0
+========================================================================================
+Report      : INFO
+Date        : 2022-01-19T12:49:57-0300
+Description : Service cmsoap disabled
+Node        : meslin-laptop
+Process     : java <204319>
+Thread      : spliced 7fb3d5d3a700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/OpenSplice domain service/sr_componentInfo.c/446/0/1642607397.331219002/0
+========================================================================================
+Report      : INFO
+Date        : 2022-01-19T12:49:57-0300
+Description : ++++++++++++++++++++++++++++++++++++++++++++++++
+              ++ The service 'splicedaemon' is now operational. 
+              ++++++++++++++++++++++++++++++++++++++++++++++++
+Node        : meslin-laptop
+Process     : java <204319>
+Thread      : spliced 7fb3d5d3a700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/v_serviceChangeState/v_service.c/266/0/1642607397.351143289/0
+========================================================================================
+Report      : WARNING
+Date        : 2022-01-19T12:49:57-0300
+Description : using network interface wlp0s20f3 (10.0.0.101) selected arbitrarily from: wlp0s20f3, enx28ee521160ec, br-630a0e3c52f9, br-ca0ae82764bf, docker0, br-f43aa21577f8, vmnet1, vmnet8
+
+Node        : meslin-laptop
+Process     : java <204319>
+Thread      : ddsi2 7fb3c5d86700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/ddsi2/q_nwif.c/989/0/1642607397.357518197/0
+========================================================================================
+Report      : INFO
+Date        : 2022-01-19T12:49:57-0300
+Description : ++++++++++++++++++++++++++++++++++++++++++++++++
+              ++ The service 'ddsi2' is now operational. 
+              ++++++++++++++++++++++++++++++++++++++++++++++++
+Node        : meslin-laptop
+Process     : java <204319>
+Thread      : ddsi2 7fb3c5d86700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/v_serviceChangeState/v_service.c/266/0/1642607397.366028107/0
+========================================================================================
+Report      : INFO
+Date        : 2022-01-19T12:49:58-0300
+Description : The durability service can be identified by ID: 1340996519
+Node        : meslin-laptop
+Process     : java <204319>
+Thread      : durability 7fb3c614a700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/DurabilityService/d_durability.c/554/0/1642607398.175471410/0
+========================================================================================
+Report      : INFO
+Date        : 2022-01-19T12:50:05-0300
+Description : ++++++++++++++++++++++++++++++++++++++++++++++++
+              ++ The service 'durability' is now operational. 
+              ++++++++++++++++++++++++++++++++++++++++++++++++
+Node        : meslin-laptop
+Process     : java <204319>
+Thread      : conflictResolver 7fb3c4d26700
+Internals   : 6.9.181127OSS/42c7caf/42c7caf/v_serviceChangeState/v_service.c/266/0/1642607405.863555360/0
