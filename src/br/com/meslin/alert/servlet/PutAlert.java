@@ -30,6 +30,16 @@ import br.com.meslin.alert.util.Debug;
 public class PutAlert extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private String responseMessage;
+	
+	
+	/* (non-Javadoc)
+	 * @see javax.servlet.http.HttpServlet#doPut(javax.servlet.http.HttpServletRequest, javax.servlet.http.HttpServletResponse)
+	 */
+	@Override
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// just call doGet
+		doGet(request, response);
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -47,7 +57,6 @@ public class PutAlert extends HttpServlet {
 			interSCity = new InterSCity(interSCityIPAddress);
 		}
 		catch (Exception e) {
-			// TODO Auto-generated catch block
 			interSCity = null;
 			e.printStackTrace();
 		}

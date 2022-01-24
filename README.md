@@ -2,14 +2,15 @@
 ##### (former AlertCity)
 ## An alert city system
 
-[![MUSANet|Solid](https://raw.githubusercontent.com/meslin8752/InterSCity-onibus/master/PoweredByMUSANet.png)](https://musanet.meslin.com.br/)
+[![MUSANet](https://raw.githubusercontent.com/meslin8752/InterSCity-onibus/master/PoweredByMUSANet.png)](https://musanet.meslin.com.br/)
 
-This project is a alert manager.
+This project is an alert manager.
 
 
 ### Running REGIONAlert:
 
 **Step 1: InterSCity**
+
 Make sure you have access to the InterSCity platform. You can check if the platform is online using the following command. In this example, we suppose InterSCity is at IP address `172.16.110.131` using TCP port 8000. Please, replace with the correct IP address or FQDN, and TCP port.
 ```sh
 curl -X GET "http://172.16.110.131:8000/catalog/capabilities"
@@ -18,6 +19,7 @@ curl -X GET "http://172.16.110.131:8000/catalog/capabilities"
 Instructions on installing InterSCity can be found [here](https://gitlab.com/interscity/interscity-platform/interscity-platform/-/tree/master/deploy).
 
 **Step 2: ContextNet**
+
 You have two options for running ContextNet:
 
 (1) you can install ContextNet using the instructions available [here](http://wiki.lac.inf.puc-rio.br/doku.php) and run an instance of ContextNet using the following command. Please, replace the path according to your ContextNet installation.
@@ -31,14 +33,16 @@ $ sudo docker run meslin/contextnet
 ```
 
 **Step 3: REGIONAlert**
+
 Clone this project.
 
 Please, configure:
+
 * Border database physical directory at:
   * `br.com.meslin.alert.servlet.GetRegion.java`
   * parameters:
     * ~~(deprecated since 2022-01-11) `-f Bairros/RioDeJaneiro.lista`~~
-    * ~~(optional since 2022-01-11) `-w /media/meslin/4E7E313D7E311EE1/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/`~~
+    * (optional since 2022-01-11) `-w /media/meslin/4E7E313D7E311EE1/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/`
 * InterSCity IP address and TCP port at:
   * WebContent/WEB-INF/web.xml
   * ~~(deprecated since 2022-01-15) `br.com.meslin.alert.connection.Constants.java` (???)~~
@@ -48,12 +52,13 @@ Please, configure:
     * CLASSNAME
     * DBURL
 
-Execute the class `br.com.meslin.alert.main.MyContextNetCore` as Java Application and the project (or `WebContent\index.html`) on server.
+Execute the class `br.com.meslin.alert.main.MyContextNetCore` as Java Application and the project (or `WebContent/index.html`) on server.
 
 > Note: Capabilities are created by `br.com.meslin.alert.servlet.listener.CheckInterSCity` (only) when the web server starts
 
 **Step 4: HumanMobility**
 To run REGIONAlert, you will need the [HumanMobility](https://github.com/meslin8752/HumanMobility.git) project to simulate users walking around the city.
+
 
 ### Environment
 * [Java 8](https://www.java.com/en/download/)
@@ -61,15 +66,25 @@ To run REGIONAlert, you will need the [HumanMobility](https://github.com/meslin8
 * [MySQL](https://dev.mysql.com/downloads/)
 * [Docker](https://www.docker.com/) - optional
 
-2022-01-15
-* Create table statement executed when instantiate database object
 
-2022-01-11
-* Fixed: get initial parameters from web
-* -w command line parameter no longer needed (now, it's optional)
-* -f command line parameter no longer needed
-* all configuration parameters are configured in web.xml
-* capability "uv" replaced by fake capability "fake" because new InterSCity version no longer has uv as a default configured capability
+### History
+* 2022-01-24
+  * Now PutAlert accept GET and POST methods to create a new alert
 
-2022-01-07
-* Database changed from MySQL to SQLite due to changes in MySQL package
+* 2022-01-15
+  * Create table statement executed when instantiating database object
+
+* 2022-01-11
+  * Fixed: get initial parameters from web
+  * `-w` command line parameter no longer needed (now, it's optional)
+  * `-f` command line parameter no longer needed
+  * all configuration parameters are configured in `web.xml`
+  * capability "uv" replaced by fake capability "fake" because the new InterSCity version no longer has uv as a default configured capability
+
+* 2022-01-07
+  * Database changed from MySQL to SQLite due to changes in MySQL package
+  
+  
+### TODO
+* Include timestamp and duration on each event
+    
