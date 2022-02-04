@@ -68,6 +68,12 @@
 			<version>2.7</version>
 		</dependency>
 		<dependency>
+			<groupId>br.pucrio.inf.lac</groupId>
+			<artifactId>contextnet</artifactId>
+			<version>2.7</version>
+		</dependency>
+
+		<dependency>
 			<groupId>br.com.meslin</groupId>
 			<artifactId>groupDefiner</artifactId>
 			<version>2.7</version>

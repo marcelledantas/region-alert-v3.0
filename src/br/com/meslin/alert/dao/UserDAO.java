@@ -30,19 +30,19 @@ public class UserDAO implements DAO<Person> {
 	 */
 	private final static String CLASSNAME = "org.sqlite.JDBC";
 	private final static String DBURL = "jdbc:sqlite:REGIONAlert.db";
+
+	/** The database connection */
 	private Connection connection;
 	
 	/**
 	 * Constructor
-	 * @throws SQLException 
-	 * 
+	 * @throws SQLException
 	 */
 	private UserDAO() throws SQLException {
 		try {
 			Class.forName(CLASSNAME);
 			this.connection = DriverManager.getConnection(DBURL);
 		} catch (ClassNotFoundException | SQLException e) {
-			// Auto-generated catch block
 			e.printStackTrace();
 		}
 		

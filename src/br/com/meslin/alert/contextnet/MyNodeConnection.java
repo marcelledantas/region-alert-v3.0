@@ -28,7 +28,6 @@ public class MyNodeConnection implements NodeConnectionListener {
 	/** a connection objet to send message to mobile-hub */
 	private MrUdpNodeConnection connection;
 
-
 	/**
 	 * 
 	 * @param gatewayIP
@@ -98,8 +97,7 @@ public class MyNodeConnection implements NodeConnectionListener {
 	 * @see lac.cnclib.net.NodeConnectionListener#reconnected(lac.cnclib.net.NodeConnection, java.net.SocketAddress, boolean, boolean)
 	 */
 	@Override
-	public void reconnected(NodeConnection arg0, SocketAddress arg1,
-			boolean arg2, boolean arg3) {
+	public void reconnected(NodeConnection arg0, SocketAddress arg1, boolean arg2, boolean arg3) {
 		// Auto-generated method stub
 	}
 

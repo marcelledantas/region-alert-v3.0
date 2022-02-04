@@ -51,8 +51,12 @@ public class PutAlert extends HttpServlet {
 		/** Contextnet UDP port */
 		//int gatewayPort = Integer.parseInt(application.getInitParameter("gatewayPort"));
 		/** InterSCity ip address */
-    	String interSCityIPAddress = application.getInitParameter("interSCityIPAddress");
+    	String interSCityIPAddress;
 		InterSCity interSCity;
+    	
+    	if((interSCityIPAddress = System.getenv("REGIONALERT_INTERSCITYIPADDRESS")) == null) {
+    		interSCityIPAddress = application.getInitParameter("interSCityIPAddress");
+    	}
 		try {
 			interSCity = new InterSCity(interSCityIPAddress);
 		}

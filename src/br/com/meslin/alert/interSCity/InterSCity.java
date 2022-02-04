@@ -33,7 +33,6 @@ public class InterSCity {
 	 */
 	public InterSCity(HTTPConnection connection) {
 		this.connection = connection;
-
 //		ordemUUIDMap = new HashMap<String, String>();
 	}
 	
@@ -315,7 +314,7 @@ public class InterSCity {
 		try {
 			response = connection.sendGet("catalog/capabilities", "");
 		} catch (Exception e) {
-			Debug.warning("Error while checking InterSCity connection (is it up?)", e);
+			Debug.warning("Error while checking InterSCity at " + connection.getIpAddress() + " connection (is it up?)", e);
 			return;
 		}
 		

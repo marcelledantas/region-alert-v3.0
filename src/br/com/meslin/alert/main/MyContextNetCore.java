@@ -82,32 +82,20 @@ public class MyContextNetCore {
 		System.out.println("BenchmarMyCore builed at " + buildDate);
 	    System.out.println("Working Directory is " + System.getProperty("user.dir"));
 	    
+	    System.out.println("Using OSPL_HOME:       " + System.getenv("OSPL_HOME"));
+	    System.out.println("Using PATH:            " + System.getenv("PATH"));
+	    System.out.println("Using LD_LIBRARY_PATH: " + System.getenv("LD_LIBRARY_PATH"));
+	    System.out.println("Using CPATH            " + System.getenv("CPATH"));
+	    System.out.println("Using OSPL_URI         " + System.getenv("OSPL_URI"));
+	    
 		// get command line options
 		Options options = new Options();
 		Option option;
-/*
-		option = new Option("a", "address", true, "ContextNet Gateway IP address");
-		option.setRequired(false);
-		options.addOption(option);
-*/
-/*
-		option = new Option("f", "groupfilename", true, "Group description filename");
-		option.setRequired(true);
-		options.addOption(option);
-*/		
+
 		option = new Option("h", "force-headless", false, "Run as in a headless environment");
 		option.setRequired(false);
 		options.addOption(option);
-/*
-		option = new Option("i", "InterSCity", true, "InterSCity IP address");
-		option.setRequired(true);
-		options.addOption(option);
-*/
-/*
-		option = new Option("p", "port", true, "ContextNet Gateway TCP port number");
-		option.setRequired(false);
-		options.addOption(option);
-*/
+
 		option = new Option("w", "workdir", true, "Directory where WebContent/WEB-INF/web.xml is located");
 		option.setRequired(false);
 		options.addOption(option);
@@ -127,23 +115,39 @@ public class MyContextNetCore {
 		
 		// getting command line and init options
 		// ContextNet IP address
-		StaticLibrary.contextNetIPAddress = StaticLibrary.getInitParameter("gatewayIP");
-
-		// group description filename
-		if((workDir = cmd.getOptionValue("workdir")) == null) workDir = StaticLibrary.getInitParameter("workDir");
-	    System.out.println("Working Directory set to " + workDir);
-		filename = StaticLibrary.getInitParameter("groupDescriptionFilename");	// filename = cmd.getOptionValue("groupfilename");
+		if((StaticLibrary.contextNetIPAddress = System.getenv("REGIONALERT_GATEWAYIP")) == null) { 
+			StaticLibrary.contextNetIPAddress = StaticLibrary.getInitParameter("gatewayIP");
+		}
 		
+		// group description filename
+		if((workDir = System.getenv("REGIONALERT_WORKDIR")) == null) {
+			if((workDir = cmd.getOptionValue("workdir")) == null) {
+				workDir = StaticLibrary.getInitParameter("workDir");
+			}
+		}
+	    System.out.println("Working Directory set to " + workDir);
+	    if((filename = System.getenv("REGIONALERT_GROUPDESCRIPTIONFILENAME")) == null) {
+	    	filename = StaticLibrary.getInitParameter("groupDescriptionFilename");	// filename = cmd.getOptionValue("groupfilename");
+	    }
+	    
 		// ContextNet TCP port number
-		try {
-			StaticLibrary.contextNetPortNumber = Integer.parseInt(StaticLibrary.getInitParameter("gatewayPort"));
-		} catch(Exception e) {
-			e.printStackTrace();
+	    try {
+			StaticLibrary.contextNetPortNumber = Integer.parseInt(System.getenv("REGIONALERT_GATEWAYPORTNUMBER"));
+		}
+		catch (Exception e1) {
+			try {
+				StaticLibrary.contextNetPortNumber = Integer.parseInt(StaticLibrary.getInitParameter("gatewayPort"));
+			} catch(Exception e) {
+				e.printStackTrace();
+				StaticLibrary.contextNetPortNumber = 5500;
+			}
 		}
 		
 		// InterSCity IP address
-		interSCityIPAddress = StaticLibrary.getInitParameter("interSCityIPAddress");	// null if not available, but, by now, it is mandatory, so never NULL
-		
+	    if((interSCityIPAddress = System.getenv("REGIONALERT_INTERSCITYIPADDRESS")) == null) {
+	    	interSCityIPAddress = StaticLibrary.getInitParameter("interSCityIPAddress");	// null if not available, but, by now, it is mandatory, so never NULL
+	    }
+	    
 		StaticLibrary.forceHeadless = cmd.hasOption("force-headless");
 
 		StaticLibrary.nMessages = 0;		// for statistics

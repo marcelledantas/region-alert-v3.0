@@ -18,6 +18,8 @@ curl -X GET "http://172.16.110.131:8000/catalog/capabilities"
 
 Instructions on installing InterSCity can be found [here](https://gitlab.com/interscity/interscity-platform/interscity-platform/-/tree/master/deploy).
 
+> Note: `Capability`'s are created by `br.com.meslin.alert.servlet.listener.CheckInterSCity` (only) when the web server starts (only). That means, if you have some problem with InterSCity and need to make a fresh start, you need to restart the whole application.
+
 **Step 2: ContextNet**
 
 You have two options for running ContextNet:
@@ -34,7 +36,9 @@ $ sudo docker run meslin/contextnet
 
 **Step 3: REGIONAlert**
 
-Clone this project.
+You have two options for running REGIONAlert:
+
+(1) Clone this project.
 
 Please, configure:
 
@@ -51,10 +55,31 @@ Please, configure:
   * `br.com.meslin.alert.dao.UserDAO`
     * CLASSNAME
     * DBURL
+    
+The following environment variables can also be configure and they have priority (they are checked first) over command line parameters and web.xml values:
+
+* REGIONALERT_GATEWAYIP
+* REGIONALERT_GATEWAYPORTNUMBER
+* REGIONALERT_GROUPDESCRIPTIONFILENAME
+* REGIONALERT_INTERSCITYIPADDRESS
+* REGIONALERT_WORKDIR
 
 Execute the class `br.com.meslin.alert.main.MyContextNetCore` as Java Application and the project (or `WebContent/index.html`) on server.
 
-> Note: Capabilities are created by `br.com.meslin.alert.servlet.listener.CheckInterSCity` (only) when the web server starts
+(2) Using Docker:
+
+Run meslin/regionalert as a Docker image. The following exemplify how to run:
+```sh
+$ sudo docker run -e REGIONALERT_GATEWAYIP=10.0.0.101 -e REGIONALERT_GATEWAYPORTNUMBER=5500 -e REGIONALERT_GROUPDESCRIPTIONFILENAME=Bairros/RioDeJaneiro.lista -e REGIONALERT_INTERSCITYIPADDRESS="172.16.110.131:8000" -e REGIONALERT_WORKDIR=/opt/REGIONAlert/ -it regionalert
+```
+Configure the following environment variables as Docker parameters according to your needs:
+* REGIONALERT_GATEWAYIP=10.0.0.101 &rarr; ContextNet-Gateway IP address
+* REGIONALERT_GATEWAYPORTNUMBER=5500 &rarr; ContextNet-Gateway TCP port-number
+* REGIONALERT_GROUPDESCRIPTIONFILENAME=Bairros/RioDeJaneiro.lista &rarr; Group description filename related to WORKDIR (se bellow) 
+* REGIONALERT_INTERSCITYIPADDRESS="172.16.110.131:8000" &rarr;  InterSCity IP address or FQDN, and TCP port-number
+* REGIONALERT_WORKDIR=/opt/REGIONAlert/ &rarr; Word directory, including the last slash
+
+> Note: You still need ContextNet Gateway and InterSCity platform as described above. Also, don't forget to run HumanMobility. 
 
 **Step 4: HumanMobility**
 To run REGIONAlert, you will need the [HumanMobility](https://github.com/meslin8752/HumanMobility.git) project to simulate users walking around the city.
@@ -68,6 +93,9 @@ To run REGIONAlert, you will need the [HumanMobility](https://github.com/meslin8
 
 
 ### History
+* 2022-02-03
+  * Added support to configuration via environment variable. This support was necessary to dockerize REGIONAlert
+  
 * 2022-01-24
   * Now PutAlert accept GET and POST methods to create a new alert
 

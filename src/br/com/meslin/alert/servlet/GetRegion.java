@@ -42,8 +42,14 @@ public class GetRegion extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
     	ServletContext application = getServletContext();
 		PrintWriter out = response.getWriter();
-		workdir = application.getInitParameter("workDir");
-		filename = application.getInitParameter("groupDescriptionFilename");
+
+		if((workdir = System.getenv("REGIONALERT_WORKDIR")) == null) {
+			workdir = application.getInitParameter("workDir");
+		}
+		if((filename = System.getenv("REGIONALERT_GROUPDESCRIPTIONFILENAME")) == null) {
+			filename = application.getInitParameter("groupDescriptionFilename");
+		}
+		
 		this.regionList = StaticLibrary.readFilenamesFile(workdir, filename);
 		JSONObject jsonObject = new JSONObject();
 		for(Region region : regionList) {

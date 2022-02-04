@@ -247,13 +247,10 @@ public class HTTPConnection {
 	 * @throws HTTPException 
 	 */
 	public String sendPost(String directory, String jsonString) throws MalformedURLException, IOException, HTTPException {
-		Debug.info("Endpoint = " + endPointURI);
 		if(endPointURI.contains("0.0.0.0")) return null;
 
 		final String url = endPointURI + "/" + directory;
 		final String method = "POST";
-		
-		Debug.info("URL = " + url + "\nPOST = " + jsonString);
 		
 		HttpURLConnection con = (HttpURLConnection) (new URL(url)).openConnection();
 		con.setRequestMethod(method);
@@ -296,6 +293,11 @@ public class HTTPConnection {
 
 		return answer.toString();
 	}
+	
+	/**
+	 * 
+	 * @return the end point IP address
+	 */
 	public String getIpAddress() {
 		return endPointURI;
 	}

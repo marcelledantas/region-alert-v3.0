@@ -119,5 +119,4 @@ public class MobileObject {
 	public void setUuid() {
 		this.uuid = UUID.randomUUID().toString();
 	}
-
 }

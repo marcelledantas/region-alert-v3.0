@@ -68,7 +68,11 @@ public class CheckInterSCity implements ServletContextListener, ServletContextAt
      */
     public void contextInitialized(ServletContextEvent servletContextEvent)  {
     	ServletContext application = servletContextEvent.getServletContext();
-    	String interSCityIPAddress = application.getInitParameter("interSCityIPAddress");
+    	String interSCityIPAddress;
+    	
+    	if((interSCityIPAddress = System.getenv("REGIONALERT_INTERSCITYIPADDRESS")) == null) {
+        	interSCityIPAddress = application.getInitParameter("interSCityIPAddress");
+    	}
     	try {
         	InterSCity interSCity = new InterSCity(interSCityIPAddress);
 			interSCity.checkInterSCity();
