@@ -12,20 +12,36 @@ import java.util.UUID;
 
 import br.com.meslin.alert.model.MyGroup;
 import br.com.meslin.alert.util.Debug;
+
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+
+import com.espertech.esper.client.EventBean;
+import com.espertech.esper.client.UpdateListener;
+
+import com.fasterxml.jackson.databind.node.ObjectNode;
+
+import ckafka.data.Swap;
+import ckafka.data.SwapData;
+
 import lac.cnclib.net.NodeConnection;
 import lac.cnclib.net.NodeConnectionListener;
-import lac.cnclib.net.groups.Group;
 import lac.cnclib.net.groups.GroupCommunicationManager;
 import lac.cnclib.net.mrudp.MrUdpNodeConnection;
 import lac.cnclib.sddl.message.ApplicationMessage;
 import lac.cnclib.sddl.message.Message;
+import main.java.application.ModelApplication;
+import lac.cnclib.net.groups.Group;
+
 
 /**
- * @author meslin
+ * @see contextNet v3.0
  *
  */
 public class MyNodeConnection implements NodeConnectionListener {
-	/** a connection objet to send message to mobile-hub */
+	
+	//TODO: Remover esse trecho
+	
+	/** a connection object to send message to mobile-hub */
 	private MrUdpNodeConnection connection;
 
 	/**
@@ -38,7 +54,7 @@ public class MyNodeConnection implements NodeConnectionListener {
 		InetSocketAddress address = new InetSocketAddress(gatewayIP, gatewayPort);
 		try {
 			connection = new MrUdpNodeConnection(UUID.randomUUID());
-			connection.addNodeConnectionListener(this);
+			connection.addNodeConnectionListener((NodeConnectionListener) this);
 			connection.connect(address);
 		} catch (IOException e) {
 			Debug.warning("Could not create a connection to " + gatewayIP + ":" + gatewayPort, e);
@@ -72,7 +88,6 @@ public class MyNodeConnection implements NodeConnectionListener {
 	/* (non-Javadoc)
 	 * @see lac.cnclib.net.NodeConnectionListener#disconnected(lac.cnclib.net.NodeConnection)
 	 */
-	@Override
 	public void disconnected(NodeConnection arg0) {
 		// Auto-generated method stub
 	}
@@ -80,7 +95,6 @@ public class MyNodeConnection implements NodeConnectionListener {
 	/* (non-Javadoc)
 	 * @see lac.cnclib.net.NodeConnectionListener#internalException(lac.cnclib.net.NodeConnection, java.lang.Exception)
 	 */
-	@Override
 	public void internalException(NodeConnection arg0, Exception arg1) {
 		// Auto-generated method stub
 	}
@@ -88,26 +102,17 @@ public class MyNodeConnection implements NodeConnectionListener {
 	/* (non-Javadoc)
 	 * @see lac.cnclib.net.NodeConnectionListener#newMessageReceived(lac.cnclib.net.NodeConnection, lac.cnclib.sddl.message.Message)
 	 */
-	@Override
-	public void newMessageReceived(NodeConnection arg0, Message arg1) {
+	public void newMessageReceived(NodeConnection arg0, ObjectNode arg1) {
 		// Auto-generated method stub
 	}
 
 	/* (non-Javadoc)
 	 * @see lac.cnclib.net.NodeConnectionListener#reconnected(lac.cnclib.net.NodeConnection, java.net.SocketAddress, boolean, boolean)
 	 */
-	@Override
 	public void reconnected(NodeConnection arg0, SocketAddress arg1, boolean arg2, boolean arg3) {
 		// Auto-generated method stub
 	}
 
-	/* (non-Javadoc)
-	 * @see lac.cnclib.net.NodeConnectionListener#unsentMessages(lac.cnclib.net.NodeConnection, java.util.List)
-	 */
-	@Override
-	public void unsentMessages(NodeConnection arg0, List<Message> arg1) {
-		// Auto-generated method stub
-	}
 
 	public void sendMessage(ApplicationMessage message) throws IOException {
 		this.connection.sendMessage(message);
@@ -129,5 +134,28 @@ public class MyNodeConnection implements NodeConnectionListener {
 			theGroups.add(group);
 		}
 		groupManager.sendGroupcastMessage(applicationMessage, theGroups);
+	}
+
+	public void recordReceived(ConsumerRecord arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void update(EventBean[] newEvents, EventBean[] oldEvents) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void newMessageReceived(NodeConnection arg0, Message arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	@Override
+	public void unsentMessages(NodeConnection arg0, List<Message> arg1) {
+		// TODO Auto-generated method stub
+		
 	}
 }

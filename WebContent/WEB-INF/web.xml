@@ -4,11 +4,11 @@
 	<!-- InterSCity IP address and TCP port - do *NOT* include http protocol  -->
     <param-name>interSCityIPAddress</param-name>
     <!-- <param-value>cidadesinteligentes.lsdi.ufma.br</param-value> -->
-    <param-value>172.16.110.131:8000</param-value>
+    <param-value>10.50.0.6:8000</param-value>
   </context-param>
   <context-param>
     <param-name>gatewayIP</param-name>
-    <param-value>localhost</param-value>
+    <param-value>172.17.0.2</param-value>
   </context-param>
   <context-param>
     <param-name>gatewayPort</param-name>
@@ -17,7 +17,7 @@
   <context-param>
   	<description>Working directory</description>
   	<param-name>workDir</param-name>
-  	<param-value>/media/meslin/4E7E313D7E311EE1/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/</param-value>
+  	<param-value>/REGIONAlert - Copia/</param-value>
   </context-param>
   <context-param>
   	<description>Group description filename</description>

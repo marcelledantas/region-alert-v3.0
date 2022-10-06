@@ -10,26 +10,29 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import lac.cnet.groupdefiner.components.groupselector.GroupSelector;
-import lac.cnet.sddl.objects.GroupRegion;
-import lac.cnet.sddl.objects.Message;
+import main.java.ckafka.GroupDefiner;
+import main.java.ckafka.GroupSelection;
 
-import org.json.JSONObject;
+//import org.json.JSONObject;
+import org.openstreetmap.gui.jmapviewer.Coordinate;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 
 import br.com.meslin.alert.main.MyContextNetCore;
 import br.com.meslin.alert.model.MobileObject;
 import br.com.meslin.alert.model.PersonSituation;
 import br.com.meslin.alert.model.Region;
 import br.com.meslin.alert.util.Debug;
-import br.com.meslin.alert.util.GeographicMap;
 import br.com.meslin.alert.util.StaticLibrary;
+import ckafka.data.Swap;
 
 /**
  * @author meslin
  *
  */
-public class MyGroupSelector implements GroupSelector {
-	private GeographicMap map;
+public class MyGroupSelector implements GroupSelection {
+	
 	private List<Region> regionList;
 	/** maps persons (string id) to a hashset of groups (list of integer) */
 	private Map<String, HashSet<Integer>> personGroup;
@@ -48,29 +51,20 @@ public class MyGroupSelector implements GroupSelector {
 		for(Region region : regionList) {
 			region.setPoints(StaticLibrary.readRegion(workdir, region.getFilename()));
 		}
-
+		
 		/*
-		 * checks if there is an graphic environment available (true if not, otherwise, false)
+		 * Create GroupDefiner 
 		 */
-		if(!GraphicsEnvironment.isHeadless() && !StaticLibrary.forceHeadless) {
-			map = new GeographicMap(regionList);
-			map.setVisible(true);
-		}
-	}
+        ObjectMapper objectMapper = new ObjectMapper();
+        Swap swap = new Swap(objectMapper);
+        new GroupDefiner(this, swap);
 
-	/* (non-Javadoc)
-	 * @see lac.cnet.groupdefiner.components.groupselector.GroupSelector#getGroupType()
-	 */
-	@Override
-	public int getGroupType() {
-		return 3;
 	}
-
+	
 	/* (non-Javadoc)
-	 * @see lac.cnet.groupdefiner.components.groupselector.GroupSelector#processGroups(lac.cnet.sddl.objects.Message)
+	 * @see 
 	 */
-	@Override
-	public Set<Integer> processGroups(Message nodeMessage) {
+	public Set<Integer> getNodesGroupByContext(ObjectNode contextInfo) {
 		boolean isNewPerson;
 		MobileObject mobileObject = null;
 		HashSet<Integer> difGroups;
@@ -92,24 +86,27 @@ public class MyGroupSelector implements GroupSelector {
 			 * 		"username": "username fake"
 			 * }
 			 */
-			mobileObject = new MobileObject(new JSONObject(new String(nodeMessage.getContent())));
+			
+		// TODO: verify if MobileObject needs to be adjusted
+			
+			//mobileObject = new MobileObject(contextInfo);
+			
 		} catch (Exception e) {
 			Debug.warning("Could not create a mobile object", e);
 		}
 
-		if(!GraphicsEnvironment.isHeadless() && !StaticLibrary.forceHeadless) {
-			map.removeItem(mobileObject);
-			map.addItem(mobileObject);
-		}
-
 		HashSet<Integer> newGroups = new HashSet<Integer>(2, 1);
 		// search the regions where the mobileObject may be
-		for(Region region : regionList) {
-			if (region.contains(mobileObject)) {
-				newGroups.add(region.getNumber());
-			}
-		}
 		
+		for(Region region : regionList) {
+			
+			Coordinate coordinate = new Coordinate(mobileObject.getLatitude(), mobileObject.getLongitude());
+			
+			if (region.contains(coordinate)) {
+			newGroups.add(region.getNumber());
+		}
+	}
+		// TODO: check how to extract ID without using mobileObject
 		// check if this mobile object enter a new group
 		difGroups = (HashSet<Integer>) newGroups.clone();
 		if(this.personGroup.containsKey(mobileObject.getId())) {
@@ -132,10 +129,31 @@ public class MyGroupSelector implements GroupSelector {
 		
 		return newGroups;
 	}
-
-	/* (non-Javadoc)
-	 * @see lac.cnet.groupdefiner.components.groupselector.GroupSelector#createGroup(lac.cnet.sddl.objects.GroupRegion)
+	
+	/*
+	 * Groups definition
 	 */
+	public Set<Integer> groupsIdentification()
+	{
+		Set<Integer> setOfGroups = new HashSet<Integer>();
+		for(Region region : regionList)
+		{
+			setOfGroups.add(region.getNumber());
+		}
+		
+		return setOfGroups;
+	}
+
 	@Override
-	public void createGroup(GroupRegion arg0) {}
+	public String kafkaConsumerPrefix() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String kafkaProducerPrefix() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
 }

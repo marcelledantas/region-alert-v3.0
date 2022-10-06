@@ -37,6 +37,20 @@ public class MobileObject {
 		this.setLatitude(latitude);
 		this.setLongitude(longitude);
 	}
+	
+	/**
+	 * Constructor<br>
+	 * @param id
+	 * @param latitude
+	 * @param longitude
+	 * @param uuid
+	 */
+	public MobileObject(String id, double latitude, double longitude, String uuid) {
+		this.setId(id);
+		this.setLatitude(latitude);
+		this.setLongitude(longitude);
+		this.setUuid(uuid);
+	}
 
 	/**
 	 * Constructor<br>

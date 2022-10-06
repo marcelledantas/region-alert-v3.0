@@ -24,11 +24,11 @@ import br.com.meslin.alert.util.StaticLibrary;
 		description = "Read the file with region numbers and filenames and returns a JSON structure",
 		urlPatterns = { "/GetRegion" }//, 
 //		initParams = {
-//				@WebInitParam(name = "workDir", value = "/media/meslin/643CA9553CA92352/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/", description = "Working directory"),
-//				@WebInitParam(name = "workDir", value = "/home/alert/", description = "Working directory"),
-//				@WebInitParam(name = "workDir", value = "/media/meslin/4E7E313D7E311EE1/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/", description = "Working directory"),
-//				@WebInitParam(name = "groupDescriptionFilename", value = "Bairros/RioDeJaneiro.lista", description = "Group description filename"),
-//		}
+////				@WebInitParam(name = "workDir", value = "/media/meslin/643CA9553CA92352/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/", description = "Working directory"),
+////				@WebInitParam(name = "workDir", value = "/home/alert/", description = "Working directory"),
+////				@WebInitParam(name = "workDir", value = "/media/meslin/4E7E313D7E311EE1/Users/meslin/Google Drive/workspace-desktop-ubuntu/RegionAlert/", description = "Working directory"),
+////				@WebInitParam(name = "groupDescriptionFilename", value = "Bairros/RioDeJaneiro.lista", description = "Group description filename"),
+////		}
 )
 public class GetRegion extends HttpServlet {
 	private static final long serialVersionUID = 1L;

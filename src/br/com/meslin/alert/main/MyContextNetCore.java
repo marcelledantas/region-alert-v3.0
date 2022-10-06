@@ -16,6 +16,8 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import br.com.meslin.alert.connection.HTTPException;
 import br.com.meslin.alert.contextnet.MyGroupSelector;
 import br.com.meslin.alert.contextnet.MyProcessingNode;
@@ -24,8 +26,9 @@ import br.com.meslin.alert.interSCity.InterSCityConsumer;
 import br.com.meslin.alert.interSCity.InterSCityData;
 import br.com.meslin.alert.util.Debug;
 import br.com.meslin.alert.util.StaticLibrary;
-import lac.cnet.groupdefiner.components.GroupDefiner;
-import lac.cnet.groupdefiner.components.groupselector.GroupSelector;
+import ckafka.data.Swap;
+import main.java.ckafka.GroupDefiner;
+import main.java.ckafka.GroupSelection;
 
 /**
  * @author meslin
@@ -184,8 +187,11 @@ public class MyContextNetCore {
 		/*
 		 * Creating GroupSelector
 		 */
-		GroupSelector groupSelector = new MyGroupSelector(workDir, filename);
-		new GroupDefiner(groupSelector);
+		ObjectMapper objectMapper = new ObjectMapper();
+        Swap swap = new Swap(objectMapper);
+		
+		MyGroupSelector groupSelector = new MyGroupSelector(workDir, filename);
+		new GroupDefiner(groupSelector, swap);
 		
 		/*
 		 * Create Processing Node
